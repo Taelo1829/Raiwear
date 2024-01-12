@@ -18,9 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='bg-purple-100 text-center p-2 text-sm'>FREE shipping on orders over R999 & 50% off on orders from R599</div>
         <Header />
-        {children}
+        <div>
+          {children}
+        </div>
       </body>
     </html>
   )
