@@ -22,6 +22,9 @@ export default function RootLayout({
         <div>
           {children}
         </div>
+        <div className='pt-10 container'>
+          FOOTER
+        </div>
       </body>
     </html>
   )
