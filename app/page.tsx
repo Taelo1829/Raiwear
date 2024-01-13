@@ -56,7 +56,7 @@ export default function Home() {
           <img src="/img/1.png" width={"50%"} />
         </div>
         <div className='flex md:hidden justify-center '>
-          <button className='border border-black rounded-full p-3'>Shop New</button>
+          <button className='border border-black rounded-full p-3' onClick={() => alert("CONGRATULATIONS MAHLATSI SEOKE YOU'VE WON R15 000")}>Shop New</button>
         </div>
         <div className="flex md:flex-wrap -mx-3 overflow-auto mt-20 px-2">
           {stock?.map((item, index) => {
