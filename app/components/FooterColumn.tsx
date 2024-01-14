@@ -7,7 +7,7 @@ const FooterColumn: React.FC<FooterColumnInterface> = ({ titles, mainHeading }) 
         <div>
             <h1 className='text-xl'>{mainHeading}</h1>
             {titles.map((title: string, index: number) => {
-                return <FooterItem title={title} index={index} />
+                return <React.Fragment key={index}> <FooterItem title={title}  /></React.Fragment>
             })}
         </div>
     )

@@ -1,6 +1,7 @@
 import React from 'react'
 import Banner from './Banner'
 import Menu from './Menu'
+import Image from 'next/image'
 //Header: React.FC<Header> 
 const Header = () => {
     let bannerHeading: string = "FREE shipping on orders over R999 & 50% off on orders from R599"
@@ -11,7 +12,7 @@ const Header = () => {
                 <div className='flex justify-between items-center'>
                     <div className=' flex-1 px-5 hidden md:inline-block cursor-pointer'><i className='fa fa-search md:text-4xl sm:text-2xl'></i></div>
                     <div className=' flex-1 px-5  md:hidden'><i className='fa fa-bars'></i></div>
-                    <div className='flex-1 flex justify-center'><img alt="Raiwear Logo" src="/img/4.png" className='sm:w-96 md:w-52' /></div>
+                    <div className='flex-1 flex justify-center'><Image alt="Raiwear Logo" src="/img/4.png" className='sm:w-96 md:w-52' width={100} height={100} /></div>
                     <div className='flex-1 px-5'>
                         <div className='float-end'>
                             <i className='fa fa-search md:text-4xl sm:text-2xl cursor-pointer md:hidden inline-block mx-2'></i>

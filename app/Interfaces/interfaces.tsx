@@ -9,7 +9,6 @@ export interface CategoryItemInterface {
 
 export interface FooterItemInterface {
     title: string
-    index: number
 }
 
 export interface FooterColumnInterface {
