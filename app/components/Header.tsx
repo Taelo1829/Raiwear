@@ -6,7 +6,7 @@ import Image from 'next/image'
 const Header = () => {
     let bannerHeading: string = "FREE shipping on orders over R999 & 50% off on orders from R599"
     return (
-        <div className='flex flex-col  items-center'>
+        <div className='flex flex-col  items-center fixed w-screen bg-blue-50 h-60'>
             <Banner heading={bannerHeading} />
             <div className='container pt-5'>
                 <div className='flex justify-between items-center'>
