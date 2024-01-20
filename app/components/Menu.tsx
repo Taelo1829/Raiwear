@@ -1,15 +1,18 @@
 import React from 'react'
+import MenuItem from './MenuItem'
+import { MenuInterface } from '../Interfaces/interfaces'
 
-const Menu = () => {
-    let classShare = "mx-3 cursor-pointer hover:underline"
+const Menu: React.FC<MenuInterface> = ({ toggleMenu, hidden, width }) => {
     return (
-        <div className='m-10 justify-center hidden md:flex font-extralight'>
-            <div className={classShare}>Home</div>
-            <div className={classShare}>Collection</div>
-            <div className={classShare}>About Us</div>
-            <div className={classShare}>Blog</div>
-            <div className={classShare}>FAQ</div>
+        <div className={`absolute bg-orange-custom top-0 left-0 ${width} h-screen border-r border-1 border-orange-custom ${hidden} transition-all duration-700 ease-in-out overflow-hidden`}>
+            <MenuItem href="/" icon="arrow-left" toggleMenu={toggleMenu} />
+            <MenuItem href="/" icon="home" routeName={"Home"} toggleMenu={toggleMenu} />
+            <MenuItem href="/collection" icon="images" routeName={"Collection"} toggleMenu={toggleMenu} />
+            <MenuItem href="/about-us" icon="users" routeName={"About Us"} toggleMenu={toggleMenu} />
+            <MenuItem href="/blog" icon="blog" routeName={"Blog"} toggleMenu={toggleMenu} />
+            <MenuItem href="/faq" icon="circle-question" routeName={"FAQ"} toggleMenu={toggleMenu} />
         </div>
+
     )
 }
 

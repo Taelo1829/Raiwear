@@ -15,3 +15,30 @@ export interface FooterColumnInterface {
     mainHeading: string
     titles: string[]
 }
+
+export interface SideNavInterface {
+    width: string,
+    hidden: boolean,
+    updateMenu: () => {}
+}
+
+export interface RouteNameInterface {
+    icon: string,
+    routeName: string,
+    route: string,
+    updateMenu: () => {},
+    hasDelete: boolean,
+}
+
+export interface MenuInterface {
+    toggleMenu: () => void
+    width: string,
+    hidden: string
+}
+
+export interface MenuItemInterface {
+    href: string
+    icon: string
+    routeName?: string
+    toggleMenu: () => void
+}

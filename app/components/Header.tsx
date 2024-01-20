@@ -1,27 +1,48 @@
-import React from 'react'
-import Banner from './Banner'
+"use client"
+import React, { useState } from 'react'
 import Menu from './Menu'
 import Image from 'next/image'
-//Header: React.FC<Header> 
+import Link from 'next/link'
+import Search from './Search'
 const Header = () => {
-    let bannerHeading: string = "FREE shipping on orders over R999 & 50% off on orders from R599"
+    const [menuOpen, setMenuOpen] = useState(false)
+    const [hidden, setHidden] = useState("hidden")
+
+    function toggleMenu() {
+        setMenuOpen(!menuOpen)
+    }
+
+    function updateMenu() {
+        switch (hidden) {
+            case "hidden":
+                setHidden("");
+                setTimeout(() => toggleMenu(), 1);
+                break;
+            default:
+                toggleMenu();
+                setTimeout(() => setHidden("hidden"), 700);
+        }
+    }
+
+    let width: string = menuOpen ? "w-0" : "w-1/4";
+
     return (
-        <div className='flex flex-col  items-center fixed w-screen bg-blue-50 h-60'>
-            <Banner heading={bannerHeading} />
-            <div className='container pt-5'>
-                <div className='flex justify-between items-center'>
-                    <div className=' flex-1 px-5 hidden md:inline-block cursor-pointer'><i className='fa fa-search md:text-4xl sm:text-2xl'></i></div>
-                    <div className=' flex-1 px-5  md:hidden'><i className='fa fa-bars'></i></div>
-                    <div className='flex-1 flex justify-center'><Image alt="Raiwear Logo" src="/img/4.png" className='sm:w-96 md:w-52' width={100} height={100} /></div>
-                    <div className='flex-1 px-5'>
-                        <div className='float-end'>
-                            <i className='fa fa-search md:text-4xl sm:text-2xl cursor-pointer md:hidden inline-block mx-2'></i>
-                            <i className='fa fa-user md:text-4xl sm:text-2xl cursor-pointer mx-2 hidden md:inline-block'></i>
-                            <i className='fa fa-shopping-bag  md:text-4xl sm:text-2xl cursor-pointer  mx-2'></i>
+        <div className='relative'>
+            <div className='flex flex-col  items-center fixed w-screen pb-5 md:h-52 border-b border-1 border-orange-custom z-10 bg-white'>
+                <div className='container pt-5 '>
+                    <div className='flex justify-between items-center'>
+                        <div className=' flex-1 px-5 md:inline-block cursor-pointer' data-modal-target="modal"><i className='fa fa-bars md:text-4xl sm:text-2xl' onClick={updateMenu}></i></div>
+                        <Link className='flex-1 flex justify-center' href={"/"}><Image alt="Raiwear Logo" src="/img/4.png" className='sm:w-96 md:w-52' width={100} height={100} /></Link>
+                        <div className='flex-1 px-5'>
+                            <div className='float-end'>
+                                <span>Login &nbsp;</span>
+                                <span>Shopping Cart ({0})</span>
+                            </div>
                         </div>
                     </div>
+                    <Search />
+                    <Menu toggleMenu={updateMenu} hidden={hidden} width={width} />
                 </div>
-                <Menu />
             </div>
         </div>
     )
