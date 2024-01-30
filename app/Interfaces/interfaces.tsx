@@ -16,12 +16,6 @@ export interface FooterColumnInterface {
     titles: string[]
 }
 
-export interface SideNavInterface {
-    width: string,
-    hidden: boolean,
-    updateMenu: () => {}
-}
-
 export interface RouteNameInterface {
     icon: string,
     routeName: string,
