@@ -36,3 +36,7 @@ export interface MenuItemInterface {
     routeName?: string
     toggleMenu: () => void
 }
+
+export type CategoriesStateInterface = {
+    active: number
+}
