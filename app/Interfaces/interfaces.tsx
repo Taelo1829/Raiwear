@@ -37,6 +37,10 @@ export interface MenuItemInterface {
     toggleMenu: () => void
 }
 
+export interface InputInterface {
+    label: string
+}
+
 export type CategoriesStateInterface = {
     active: number
 }

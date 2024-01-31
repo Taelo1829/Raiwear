@@ -28,6 +28,8 @@ const Header = () => {
         }
     }
 
+    let hideSearch = !window.location.href.includes("contact-us")
+
     return (
         <div className='relative'>
             <div className='flex flex-col  items-center fixed w-screen pb-5 md:h-52 border-b border-1 border-orange-custom z-10 bg-white '>
@@ -42,7 +44,7 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-                    <Search />
+                    {hideSearch ? <Search /> : ""}
                     <Menu toggleMenu={updateMenu} hidden={hidden} width={width} />
                 </div>
             </div>
