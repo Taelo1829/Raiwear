@@ -4,18 +4,12 @@ import FooterColumn from './FooterColumn'
 
 const Footer = () => {
     let firstColumnTitles: string[] = ["Search", "Contact Us", "Term Of Use", "Privacy Policy", "Terms Of Service"];
-    let secondColumnTitle: string[] = ["Email Address", "raiwear@outlook.co.za", "Instagram", "raiwear.studio"];
+    let secondColumnTitle: any[] = [<b>Email Address</b>, "raiwemarketing@outlook.com", <b>Instagram</b>, "raiwear.studio", <b>Whatsapp</b>, "+27 73 376 7873"];
     return (
-        <div className='bg-orange-custom p-10 flex justify-center'>
-            <div className='text-red-custom text-lg container flex sm:justify-center md:justify-between '>
-                <FooterColumn titles={firstColumnTitles} mainHeading={"Shop"} />
-                <div className='hidden md:inline-block'>
-                    <FooterColumn titles={firstColumnTitles} mainHeading={"Info"} />
-                </div>
-                <div className='hidden md:inline-block'>
-                    <FooterColumn titles={secondColumnTitle} mainHeading={"Contact Us"} />
-                </div>
-
+        <div className='flex justify-center font-mono pb-10'>
+            <div className='container flex justify-around'>
+                <div>terms of use</div>
+                <div>privacy and cookies policy</div>
             </div>
         </div>
     )

@@ -24,7 +24,9 @@ export default class page extends Component {
                                         <label>Contact Reason</label>
                                     </div>
                                     <select className='w-full border border-black p-2'>
-                                        <option className='text-gray-300'>Select reason--</option>
+                                        <option className='text-gray-300'>Select Reason--</option>
+                                        <option >Custom Order</option>
+                                        <option >General Query</option>
                                     </select>
                                 </div>
                             </div>

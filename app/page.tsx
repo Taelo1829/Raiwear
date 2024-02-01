@@ -17,6 +17,12 @@ export default function Home() {
         <ShoppingCategory />
         <InstaSection />
         <EmailUs />
+        <div className="flex justify-between py-5">
+          <div>instagram</div>
+          <div>pinterest</div>
+          <div>youtube</div>
+          <div>whatsapp</div>
+        </div>
       </div>
     </div >
   )

@@ -20,7 +20,7 @@ export default class page extends Component {
             "ACCESSORIES",
         ]
         return (
-            <div className='flex justify-center pb-20'>
+            <div className='flex justify-center pb-20 h-full'>
                 <div className='container'>
                     <div className='flex justify-between w-1/6 my-4 text-2xl'>
                         <div className={"pr-2 " + (this.state.active === 1 ? "font-bold" : "")} onClick={() => this.setState({ active: 1 })}>WOMEN</div>

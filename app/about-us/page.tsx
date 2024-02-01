@@ -1,14 +1,15 @@
 "use client"
 import React, { Component } from 'react'
+import EmailUs from '../components/HomePage/EmailUs'
 
 export default class page extends Component {
     render() {
         return (
-            <div className='my-5 flex justify-center'>
+            <div className='my-5 flex justify-center items-center flex-col '>
                 <div className='container'>
                     <div className='text-2xl font-bold'> ABOUT US</div>
-                    <div>
-                    <br />
+                    <div className='bg-orange-custom p-5 my-5'>
+                        <br />
                         RAIWEAR is your online destination for sustainable fashion. our collection includes upcycled clothes, thrift treasures, and custom creations—all with a commitment to eco-friendly style. our slogan, “eco-fashion for a conscious lifestyle”, embodies our ethos.
                         <br />
                         <br />
@@ -25,6 +26,7 @@ export default class page extends Component {
                         shop RAIWEAR—where sustainable style meets your lifestyle. redefine fashion, one conscious choice at a time!
                     </div>
                 </div>
+                <EmailUs />
             </div>
         )
     }
