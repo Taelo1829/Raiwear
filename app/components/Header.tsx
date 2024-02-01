@@ -28,7 +28,11 @@ const Header = () => {
         }
     }
 
-    let hideSearch = !window.location.href.includes("contact-us")
+    let locationText = window.location.href
+    let hideSearch = false
+    if (locationText.includes("contact-us") || locationText.includes("about-us")) {
+        hideSearch = true
+    }
 
     return (
         <div className='relative'>
@@ -44,7 +48,7 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-                    {hideSearch ? <Search /> : ""}
+                    {hideSearch ? "" : <Search />}
                     <Menu toggleMenu={updateMenu} hidden={hidden} width={width} />
                 </div>
             </div>

@@ -8,8 +8,8 @@ const Menu: React.FC<MenuInterface> = ({ toggleMenu, hidden, width }) => {
             <MenuItem href="/" icon="arrow-left" toggleMenu={toggleMenu} />
             <MenuItem href="/" icon="home" routeName={"Home"} toggleMenu={toggleMenu} />
             <MenuItem href="/collection" icon="images" routeName={"Collection"} toggleMenu={toggleMenu} />
-            <MenuItem href="/contact-us" icon="users" routeName={"Contact Us"} toggleMenu={toggleMenu} />
-            <MenuItem href="/blog" icon="blog" routeName={"Blog"} toggleMenu={toggleMenu} />
+            <MenuItem href="/contact-us" icon="phone" routeName={"Contact Us"} toggleMenu={toggleMenu} />
+            <MenuItem href="/about-us" icon="users" routeName={"About Us"} toggleMenu={toggleMenu} />
             <MenuItem href="/faq" icon="circle-question" routeName={"FAQ"} toggleMenu={toggleMenu} />
         </div>
 
