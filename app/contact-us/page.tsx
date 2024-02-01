@@ -34,7 +34,11 @@ export default class page extends Component {
                                     <div ><textarea className='w-full border border-black my-3 min-h-20' /></div>
                                 </div>
                             </div>
+                            <div className='float-end border border-black p-1 px-4 rounded-xl bg-orange-400 text-white'>
+                                Send
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
