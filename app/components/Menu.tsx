@@ -25,10 +25,10 @@ const Menu: React.FC<MenuInterface> = ({ toggleMenu, hidden, width }) => {
                 <div > <i className={`fa fa-book fa-2x text-red-custom`}></i></div>
                 <div className=' w-full px-5' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><span className='text-2xl'>Admin <i className={`fa fa-chevron-${(adminOpen ? "up" : "down")} float-end cursor-pointer`}></i></span></div>
             </div>
-            <div className={adminHeight + ' overflow-hidden transition-all duration-700 ease-in-out '}>
-                <MenuItem href="/add-categories" icon="categories" routeName={"Add Categories"} toggleMenu={toggleMenu} />
-                <MenuItem href="/add-clothes" icon="clothes" routeName={"Add Clothes"} toggleMenu={toggleMenu} />
-                <MenuItem href="/specials" icon="special" routeName={"Create Sale"} toggleMenu={toggleMenu} />
+            <div className={adminHeight + ' overflow-hidden transition-all duration-700 ease-in-out '} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <MenuItem href="/admin-categories" icon="categories" routeName={"Categories"} toggleMenu={toggleMenu} />
+                <MenuItem href="/clothes" icon="clothes" routeName={"Clothes"} toggleMenu={toggleMenu} />
+                <MenuItem href="/specials" icon="special" routeName={"Sale"} toggleMenu={toggleMenu} />
             </div>
             <MenuItem href="/faq" icon="circle-question" routeName={"FAQ"} toggleMenu={toggleMenu} />
         </div>
