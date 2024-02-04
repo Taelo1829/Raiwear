@@ -16,7 +16,7 @@ export default class page extends Component {
                     </div>
                     <div className='w-full px-5'>
                         <div className='py-10 text-center'>need an account?</div>
-                        <div  className='border border-black w-full my-5 text-center' ><Link href={"/register"} className='bg-blue-100 w-100'>register</Link></div>
+                        <div className='border border-black w-full my-5 text-center' ><Link href={"/register"} className='w-100 cursor-pointer'>register</Link></div>
                     </div>
                 </div>
             </div>
