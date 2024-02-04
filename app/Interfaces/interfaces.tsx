@@ -54,3 +54,8 @@ export type ContactUsInterface = {
     email: string,
     mobile: string
 }
+
+export interface ShoppingListInterface {
+    index: number,
+    item: any
+}
