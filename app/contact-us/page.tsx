@@ -11,6 +11,11 @@ export default class page extends Component {
         email: "",
         mobile: ""
     }
+
+    constructor(props: any) {
+        super(props)
+        this.updateState = this.updateState.bind(this)
+    }
     updateState(data: any) {
         this.setState({ ...data })
     }
@@ -23,8 +28,8 @@ export default class page extends Component {
                     <div className='bg-orange-custom flex justify-center'>
                         <div className='container px-20 py-5'>
                             <div className='flex justify-between' >
-                                <Input label={"Name"} onChange={this.updateState} valueToUpdate="firstName" value={this.state.firstName} />
-                                <Input label={"Surname"} onChange={this.updateState} valueToUpdate="lastName" value={this.state.lastName} />
+                                <Input label={"First Name"} onChange={this.updateState} valueToUpdate="firstName" value={this.state.firstName} />
+                                <Input label={"Last Name"} onChange={this.updateState} valueToUpdate="lastName" value={this.state.lastName} />
                             </div>
                             <div className='flex justify-between'>
                                 <Input label={"Email"} onChange={this.updateState} valueToUpdate="email" value={this.state.email} />
