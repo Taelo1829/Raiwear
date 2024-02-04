@@ -34,7 +34,7 @@ export default class page extends Component {
                             <div className='text-2xl font-bold'> RAIWEAR ORIGINALS - DESCRIPTION</div>
                             <br />
                             RAIWEAR Originals, where fashion meets your unique vision. these designs are the heart of our creativity, carefully crafted with a commitment to individuality and sustainability.
-                            if you can't find your desired size or a specific piece is sold out, don't fret. Connect with us, share your specifications, and let us bring your dream garment to life. at RAIWEAR we believe in making fashion as unique as you are.
+                            if you {"can't"}find your desired size or a specific piece is sold out, {"don't"} fret. Connect with us, share your specifications, and let us bring your dream garment to life. at RAIWEAR we believe in making fashion as unique as you are.
                         </div>
                     </div>
 
