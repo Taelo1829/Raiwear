@@ -28,11 +28,7 @@ const Header = () => {
         }
     }
 
-    let locationText = window.location.href
     let hideSearch = false
-    if (locationText.includes("contact-us") || locationText.includes("about-us")) {
-        hideSearch = true
-    }
 
     return (
         <div className='relative'>

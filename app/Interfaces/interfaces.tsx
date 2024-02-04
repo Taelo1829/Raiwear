@@ -39,8 +39,18 @@ export interface MenuItemInterface {
 
 export interface InputInterface {
     label: string
+    onChange: (data: any) => void
+    valueToUpdate: string,
+    value: string
 }
 
 export type CategoriesStateInterface = {
     active: number
+}
+
+export type ContactUsInterface = {
+    firstName: string,
+    lastName: string,
+    email: string,
+    mobile: string
 }

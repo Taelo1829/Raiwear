@@ -1,8 +1,20 @@
 "use client"
 import React, { Component } from 'react'
 import Input from './Input'
+import { ContactUsInterface } from '../Interfaces/interfaces'
 
 export default class page extends Component {
+
+    state: ContactUsInterface = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        mobile: ""
+    }
+    updateState(data: any) {
+        this.setState({ ...data })
+    }
+
     render() {
         return (
             <div className='p-5 flex justify-center'>
@@ -11,12 +23,12 @@ export default class page extends Component {
                     <div className='bg-orange-custom flex justify-center'>
                         <div className='container px-20 py-5'>
                             <div className='flex justify-between' >
-                                <Input label={"Name"} />
-                                <Input label={"Surname"} />
+                                <Input label={"Name"} onChange={this.updateState} valueToUpdate="firstName" value={this.state.firstName} />
+                                <Input label={"Surname"} onChange={this.updateState} valueToUpdate="lastName" value={this.state.lastName} />
                             </div>
                             <div className='flex justify-between'>
-                                <Input label={"Email"} />
-                                <Input label={"Mobile Number"} />
+                                <Input label={"Email"} onChange={this.updateState} valueToUpdate="email" value={this.state.email} />
+                                <Input label={"Mobile Number"} onChange={this.updateState} valueToUpdate="mobile" value={this.state.mobile} />
                             </div>
                             <div className='flex justify-between py-3'>
                                 <div className='w-1/2'>
