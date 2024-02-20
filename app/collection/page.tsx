@@ -29,7 +29,7 @@ export default class page extends Component {
                     </div>
                     <div className='my-5 flex flex-wrap'>
                         {categories.map((item: any, index: number) => {
-                            return <div key={index} className='bg-black text-white p-3 border border-black m-3'>
+                            return <div key={index} className='bg-black text-white p-3 border border-black '>
                                 {item}
                             </div>
                         })}
