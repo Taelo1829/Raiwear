@@ -15,7 +15,6 @@ export default function Home() {
         <ShopNewSection />
         <OnSale />
         <ShoppingCategory />
-        <InstaSection />
         <EmailUs />
         <div className="flex justify-between py-5">
           <div>instagram</div>

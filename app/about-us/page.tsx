@@ -26,12 +26,12 @@ export default class page extends Component {
                         <div>
                             <br />
                             <br />
-                            <div className='text-2xl font-bold'>UPCYCLES - DESCRIPTION</div>
+                            <div className='text-2xl font-bold'>UPCYCLES</div>
                             <br />
                             at RAIWEAR, we believe in transforming fashion into a force for positive change. our dedication to upcycling stems from a passion for sustainability and a profound love for clothing. by giving new life to pre-loved garments, we aim to extend their journey and promote a culture of mindful consumption. With each upcycled piece, we not only embrace the uniqueness of individual styles but also actively contribute to reducing environmental impact and promoting a world where fashion cares for both you and the planet. Join us in the pursuit of a more conscious and stylish future.
                             <br />
                             <br />
-                            <div className='text-2xl font-bold'> RAIWEAR ORIGINALS - DESCRIPTION</div>
+                            <div className='text-2xl font-bold'> RAIWEAR ORIGINALS</div>
                             <br />
                             RAIWEAR Originals, where fashion meets your unique vision. these designs are the heart of our creativity, carefully crafted with a commitment to individuality and sustainability.
                             if you {"can't"}find your desired size or a specific piece is sold out, {"don't"} fret. Connect with us, share your specifications, and let us bring your dream garment to life. at RAIWEAR we believe in making fashion as unique as you are.

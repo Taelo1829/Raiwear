@@ -35,7 +35,7 @@ export default class page extends Component {
                                 <Input label={"Email"} onChange={this.updateState} valueToUpdate="email" value={this.state.email} />
                                 <Input label={"Mobile Number"} onChange={this.updateState} valueToUpdate="mobile" value={this.state.mobile} />
                             </div>
-                            <div className='flex justify-between py-3'>
+                            <div className='flex justify-between p-3'>
                                 <div className='w-1/2'>
                                     <div>
                                         <label>Contact Reason</label>
@@ -47,10 +47,10 @@ export default class page extends Component {
                                     </select>
                                 </div>
                             </div>
-                            <div className='flex justify-between'>
+                            <div className='flex justify-between m-3'>
                                 <div className='w-full'>
                                     <div><label>Message</label></div>
-                                    <div ><textarea className='w-full border border-black my-3 min-h-20' /></div>
+                                    <div ><textarea className='w-full border border-black min-h-20' /></div>
                                 </div>
                             </div>
                             <div className='float-end border border-black p-1 px-4 rounded-xl bg-orange-400 text-white'>

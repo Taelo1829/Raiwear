@@ -59,3 +59,13 @@ export interface ShoppingListInterface {
     index: number,
     item: any
 }
+
+export type registerStateType = {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    receiveEmails: boolean,
+    readPolicy: boolean,
+    loading:boolean
+}

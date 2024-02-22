@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import MenuItem from './MenuItem'
 import { MenuInterface } from '../Interfaces/interfaces'
-
+const User = JSON.parse(localStorage.getItem("currentUser") || "{}")
 const Menu: React.FC<MenuInterface> = ({ toggleMenu, hidden, width }) => {
-    const [adminOpen, setAdminOpen] = useState(false)
-    const [adminHeight, setAdminHeight] = useState("max-h-0")
+    const [adminOpen, setAdminOpen] = useState(false);
+    const [adminHeight, setAdminHeight] = useState("max-h-0");
     function handleMouseEnter() {
         setAdminHeight("max-h-96")
         setAdminOpen(true)
@@ -21,6 +21,7 @@ const Menu: React.FC<MenuInterface> = ({ toggleMenu, hidden, width }) => {
             <MenuItem href="/collection" icon="images" routeName={"Collection"} toggleMenu={toggleMenu} />
             <MenuItem href="/contact-us" icon="phone" routeName={"Contact Us"} toggleMenu={toggleMenu} />
             <MenuItem href="/about-us" icon="users" routeName={"About Us"} toggleMenu={toggleMenu} />
+           {Object.keys(User).length? <>
             <div className='border-b border-1 border-orange-custom p-5 md:px-10 flex justify-between relative'>
                 <div > <i className={`fa fa-book fa-2x text-red-custom`}></i></div>
                 <div className=' w-full px-5' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><span className='text-2xl'>Admin <i className={`fa fa-chevron-${(adminOpen ? "up" : "down")} float-end cursor-pointer`}></i></span></div>
@@ -30,7 +31,8 @@ const Menu: React.FC<MenuInterface> = ({ toggleMenu, hidden, width }) => {
                 <MenuItem href="/clothes" icon="clothes" routeName={"Clothes"} toggleMenu={toggleMenu} />
                 <MenuItem href="/specials" icon="special" routeName={"Sale"} toggleMenu={toggleMenu} />
             </div>
-            <MenuItem href="/faq" icon="circle-question" routeName={"FAQ"} toggleMenu={toggleMenu} />
+            </>:<></>}
+            <MenuItem href="/faq" icon="circle-question" routeName={"Blog"} toggleMenu={toggleMenu} />
         </div>
 
     )

@@ -39,7 +39,7 @@ const Header = () => {
                         <Link className='flex-1 flex justify-center' href={"/"}><Image alt="Raiwear Logo" src="/img/4.png" className='sm:w-96 md:w-52' width={100} height={100} /></Link>
                         <div className='flex-1 px-5'>
                             <div className='float-end'>
-                                <Link href={"login"}>Login &nbsp;</Link>
+                                <Link href={"login"}>log in &nbsp;</Link>
                                 <span>Shopping Bag ({0})</span>
                             </div>
                         </div>
