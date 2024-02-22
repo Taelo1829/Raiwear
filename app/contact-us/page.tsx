@@ -25,7 +25,7 @@ export default class page extends Component {
             <div className='p-5 flex justify-center'>
                 <div className='w-full lg:w-3/6 '>
                     <div className='text-2xl py-3'>CONTACT US</div>
-                    <div className='bg-orange-custom flex justify-center'>
+                    <div className='bg-orange-custom flex justify-center '>
                         <div className='container px-20 py-5'>
                             <div className='flex justify-between' >
                                 <Input label={"First Name"} onChange={this.updateState} valueToUpdate="firstName" value={this.state.firstName} />
