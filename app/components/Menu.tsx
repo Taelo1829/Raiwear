@@ -24,7 +24,7 @@ const User = getUserDetails()
             <MenuItem href="/collection" icon="images" routeName={"Collection"} toggleMenu={toggleMenu} />
             <MenuItem href="/contact-us" icon="phone" routeName={"Contact Us"} toggleMenu={toggleMenu} />
             <MenuItem href="/about-us" icon="users" routeName={"About Us"} toggleMenu={toggleMenu} />
-           {Object.keys(User).length? <>
+           {!User? <>
             <div className='border-b border-1 border-orange-custom p-5 md:px-10 flex justify-between relative'>
                 <div > <i className={`fa fa-book fa-2x text-red-custom`}></i></div>
                 <div className=' w-full px-5' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><span className='text-2xl'>Admin <i className={`fa fa-chevron-${(adminOpen ? "up" : "down")} float-end cursor-pointer`}></i></span></div>

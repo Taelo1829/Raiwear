@@ -13,10 +13,10 @@ export function fieldValidation(id, field) {
 
 
 export function getUserDetails() {
-    // if (typeof window !== 'undefined') {
-    //     let location = localStorage.getItem("currentUser");
-    //     if (location && location !== "undefined") {
-    //         return JSON.parse(location);
-    //     }
-    // }
+    if (typeof window !== 'undefined') {
+        let location = localStorage.getItem("currentUser");
+        if (location && location !== "undefined") {
+            return JSON.parse(location);
+        }
+    }
 }
