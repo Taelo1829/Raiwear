@@ -15,7 +15,8 @@
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-social-media-embed": "^2.4.1"
+    "react-social-media-embed": "^2.4.1",
+    "reactstrap": "^9.2.2"
   },
   "devDependencies": {
     "@types/node": "^20",

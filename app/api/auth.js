@@ -2,9 +2,11 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
+
 const app = initializeApp({
   apiKey: "AIzaSyB0QLzsKYQ-sSvztuDqkQ8S_mHLT1g7e9Y",
   authDomain: "raiwear-d00a9.firebaseapp.com",
@@ -14,7 +16,9 @@ const app = initializeApp({
   appId: "1:264902291798:web:05e34506e4319fb1b7a6f7",
   measurementId: "G-GK80EBKM2L",
 });
+
 const auth = getAuth(app);
+
 export async function createUser(email, password) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
@@ -51,4 +55,14 @@ export async function loginUser(email, password) {
   } catch (error) {
     return error;
   }
+}
+
+export async function sendForgotPassword(email){
+    try{
+        const result = await sendPasswordResetEmail(auth,email)
+        console.log(result)
+        return result
+    }catch(error){
+        return error
+    }
 }

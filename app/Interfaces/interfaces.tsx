@@ -69,3 +69,18 @@ export type registerStateType = {
     readPolicy: boolean,
     loading:boolean
 }
+
+export type loginType = {
+    email:string,
+    password: string,
+    loading: boolean,
+    modalOpen: boolean,
+}
+
+export type modalType = {
+    isOpen:boolean
+    closeModal:()=>void
+    email:string
+    sendPassword:()=>void
+    updateEmail:(e:string)=>void
+}
