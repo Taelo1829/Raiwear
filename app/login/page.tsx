@@ -21,10 +21,12 @@ export default class page extends Component {
     if (value) {
         this.setState({loading: true})
       let user = await loginUser(this.state.email, this.state.password);
-      let localStorage = window.localStorage
-      localStorage.setItem("currentUser", JSON.stringify(user));
-      window.location.href = "/";
-      this.setState({loading: false})
+      if(window){
+        let localStorage = window.localStorage
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        window.location.href = "/";
+        this.setState({loading: false})
+      }
     }
   }
 

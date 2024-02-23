@@ -12,7 +12,9 @@ export function fieldValidation(id, field) {
 
 
 export function getUserDetails() {
-    let localStorage = window.localStorage;
-  let user = JSON.parse(localStorage.getItem("currentUser") || "{}");
-  return user;
+    if(window){
+        let localStorage = window.localStorage;
+        let user = JSON.parse(localStorage.getItem("currentUser") || "{}");
+        return user;  
+    }
 }
