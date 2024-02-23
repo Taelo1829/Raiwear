@@ -6,7 +6,6 @@ import Link from 'next/link'
 import Search from './Search'
 import { getUserDetails } from '../helper/helper'
 
-const User = getUserDetails()
 const Header = () => {
     const [hidden, setHidden] = useState("hidden")
     const [width, setWidth] = useState("w-0")
@@ -36,6 +35,9 @@ const Header = () => {
     if(window){
       location = window.location.href
     }
+
+const User = getUserDetails()
+
     return (
         <div className='relative'>
             <div className='flex flex-col  items-center fixed w-screen pb-5 md:h-52 border-b border-1 border-orange-custom z-10 bg-white '>

@@ -3,7 +3,6 @@ import MenuItem from './MenuItem'
 import { MenuInterface } from '../Interfaces/interfaces'
 import { getUserDetails } from '../helper/helper'
 
-const User = getUserDetails()
 const Menu: React.FC<MenuInterface> = ({ toggleMenu, hidden, width }) => {
     const [adminOpen, setAdminOpen] = useState(false);
     const [adminHeight, setAdminHeight] = useState("max-h-0");
@@ -16,6 +15,8 @@ const Menu: React.FC<MenuInterface> = ({ toggleMenu, hidden, width }) => {
         setAdminHeight("max-h-0")
         setAdminOpen(false)
     }
+const User = getUserDetails()
+
     return (
         <div className={`absolute bg-orange-custom top-0 left-0 ${width} h-screen border-r border-1 border-orange-custom ${hidden} transition-all duration-700 ease-in-out overflow-hidden`}>
             <MenuItem href="/" icon="arrow-left" toggleMenu={toggleMenu} />
