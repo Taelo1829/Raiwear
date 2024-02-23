@@ -1,11 +1,12 @@
 import React from 'react'
 import { ShoppingListInterface } from '../../Interfaces/interfaces'
+import Image from 'next/image'
 
 const ShoppingItem: React.FC<ShoppingListInterface> = ({ index, item }) => {
     return (
         <div key={index} className="m-4" >
             <div>
-                <img alt={item.title} src={item.image} className="h-52" />
+                <Image alt={item.title} src={item.image} className="h-52" />
             </div>
             <div className=" flex flex-col items-center">
                 <label >{item.title}</label>
