@@ -32,7 +32,10 @@ const Header = () => {
     }
 
     let hideSearch = false
-
+    let location
+    if(window){
+      location = window.location.href
+    }
     return (
         <div className='relative'>
             <div className='flex flex-col  items-center fixed w-screen pb-5 md:h-52 border-b border-1 border-orange-custom z-10 bg-white '>
@@ -52,7 +55,7 @@ const Header = () => {
                       <Link href={"/about-us"} className='hover:underline mx-5 font-mono'>about us</Link>  
                       <Link href={"/contact-us"} className='hover:underline mx-5 font-mono'>contact Us</Link>  
                       <Link href={"/blog"} className='hover:underline mx-5 font-mono'>blog</Link>  
-                    <select onChange={(e)=>window.location.href = e.target.value}>
+                    <select onChange={(e)=>location = e.target.value}>
                         <option>admin</option>
                         <option value={"/admin-categories"}>categories</option>
                         <option value={"/clothes"}>clothes</option>
