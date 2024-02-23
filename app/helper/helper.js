@@ -1,3 +1,4 @@
+"use client"
 export function fieldValidation(id, field) {
     let element = document.getElementById(id);
   if (!field) {

@@ -70,7 +70,9 @@ const OnSale = () => {
     return (<div className='flex  bg-orange-custom p-3 flex-wrap'>
         {placeHolder.map((item, index) => {
             return <div className=' w-1/4 h-80 p-3 text-center my-2' key={index}>
-                <div className='flex bg-blue-100 w-full h-3/5 justify-center items-center'><Image src={item.image} alt=""/></div>
+                <div className='flex bg-blue-100 w-full h-3/5 justify-center items-center'>
+                    {/* <Image src={item.image} alt="" width={100} height={100}/> */}
+                    </div>
                 <div className='py-1 text-left font-medium'>{item.name}</div>
                 <div className='py-1 text-left font-extralight'>{item.size}</div>
                 <div className='py-1 text-left font-extralight'>{item.description}</div>

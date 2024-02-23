@@ -6,7 +6,7 @@ const ShoppingItem: React.FC<ShoppingListInterface> = ({ index, item }) => {
     return (
         <div key={index} className="m-4" >
             <div>
-                <Image alt={item.title} src={item.image} className="h-52" />
+                <Image alt={item.title} src={item.image} className="h-52" width={100} height={100}/>
             </div>
             <div className=" flex flex-col items-center">
                 <label >{item.title}</label>
