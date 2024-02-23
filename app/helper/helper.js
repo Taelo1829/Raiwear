@@ -13,9 +13,6 @@ export function fieldValidation(id, field) {
 
 
 export function getUserDetails() {
-    if(window){
-        let localStorage = window.localStorage;
         let user = JSON.parse(localStorage.getItem("currentUser") || "{}");
         return user;  
-    }
 }

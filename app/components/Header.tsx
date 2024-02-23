@@ -31,10 +31,7 @@ const Header = () => {
     }
 
     let hideSearch = false
-    let location
-    if(window){
-      location = window.location.href
-    }
+
 
 const User = getUserDetails()
 
@@ -57,7 +54,7 @@ const User = getUserDetails()
                       <Link href={"/about-us"} className='hover:underline mx-5 font-mono'>about us</Link>  
                       <Link href={"/contact-us"} className='hover:underline mx-5 font-mono'>contact Us</Link>  
                       <Link href={"/blog"} className='hover:underline mx-5 font-mono'>blog</Link>  
-                    <select onChange={(e)=>location = e.target.value}>
+                    <select>
                         <option>admin</option>
                         <option value={"/admin-categories"}>categories</option>
                         <option value={"/clothes"}>clothes</option>

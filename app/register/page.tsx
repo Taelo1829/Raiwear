@@ -35,13 +35,10 @@ export default class page extends Component {
         lastName: this.state.lastName,
       };
 
-      if(window){
-        let localStorage = window.localStorage;
         localStorage.setItem("currentUser", JSON.stringify(user));
         await updateUser(this.state);
         this.setState({ loading: false });
-        window.location.href = "/";
-      }
+        location.href = "/";
     } else {
       //   alert("please enter email and password");
     }
