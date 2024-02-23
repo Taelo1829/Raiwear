@@ -21,11 +21,11 @@ export default class page extends Component {
 
   async createAccount() {
     let valid = fieldValidation("firstName", this.state.firstName);
-    if (valid)  valid = fieldValidation("lastName", this.state.lastName);
-    if (valid)  valid = fieldValidation("lastName", this.state.email);
-    if (valid)  valid = fieldValidation("lastName", this.state.password);
-    if (valid)  valid = fieldValidation("lastName", this.state.readPolicy);
-     
+    if (valid) valid = fieldValidation("lastName", this.state.lastName);
+    if (valid) valid = fieldValidation("lastName", this.state.email);
+    if (valid) valid = fieldValidation("lastName", this.state.password);
+    if (valid) valid = fieldValidation("lastName", this.state.readPolicy);
+
     if (valid) {
       this.setState({ loading: true });
       let user: any = await createUser(this.state.email, this.state.password);
@@ -34,11 +34,12 @@ export default class page extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
       };
-
+      if (typeof window !== "undefined") {
         localStorage.setItem("currentUser", JSON.stringify(user));
-        await updateUser(this.state);
-        this.setState({ loading: false });
-        location.href = "/";
+      }
+      await updateUser(this.state);
+      this.setState({ loading: false });
+      location.href = "/";
     } else {
       //   alert("please enter email and password");
     }
