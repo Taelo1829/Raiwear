@@ -4,7 +4,9 @@ import Menu from './Menu'
 import Image from 'next/image'
 import Link from 'next/link'
 import Search from './Search'
-const User = JSON.parse(localStorage.getItem("currentUser") || "{}");
+import { getUserDetails } from '../helper/helper'
+
+const User = getUserDetails()
 const Header = () => {
     const [hidden, setHidden] = useState("hidden")
     const [width, setWidth] = useState("w-0")

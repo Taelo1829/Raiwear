@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import MenuItem from './MenuItem'
 import { MenuInterface } from '../Interfaces/interfaces'
-const User = JSON.parse(localStorage.getItem("currentUser") || "{}")
+import { getUserDetails } from '../helper/helper'
+
+const User = getUserDetails()
 const Menu: React.FC<MenuInterface> = ({ toggleMenu, hidden, width }) => {
     const [adminOpen, setAdminOpen] = useState(false);
     const [adminHeight, setAdminHeight] = useState("max-h-0");

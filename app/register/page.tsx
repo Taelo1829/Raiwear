@@ -34,6 +34,8 @@ export default class page extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
       };
+
+      let localStorage = window.localStorage;
       localStorage.setItem("currentUser", JSON.stringify(user));
       await updateUser(this.state);
       this.setState({ loading: false });

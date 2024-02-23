@@ -9,3 +9,10 @@ export function fieldValidation(id, field) {
     return true;
   }
 }
+
+
+export function getUserDetails() {
+    let localStorage = window.localStorage;
+  let user = JSON.parse(localStorage.getItem("currentUser") || "{}");
+  return user;
+}
