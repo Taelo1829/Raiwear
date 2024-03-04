@@ -80,14 +80,17 @@ export type loginType = {
 export type modalType = {
     isOpen:boolean
     closeModal:()=>void
-    email:string
-    sendPassword:()=>void
-    updateEmail:(e:string)=>void
+    email?:string
+    sendPassword?:()=>void
+    title?:string
+    updateEmail?:(e:string)=>void
 }
 
 export type profileStateType = {
     isActive: boolean,
     purchases: purchaseType[]
+    updateValue:string
+    modal:boolean
 }
 
 export type purchaseType = {
