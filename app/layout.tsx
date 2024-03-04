@@ -21,6 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body className={inter.className + " h-screen flex flex-col justify-between"}>
         <Header />
         <div className='pt-10 md:pt-52'>
