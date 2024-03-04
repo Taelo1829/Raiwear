@@ -52,7 +52,7 @@ const User = getUserDetails()
                     <div className='flex justify-center my-2'>
                       <Link href={"/collection"} className='hover:underline mx-5 font-mono'>collection</Link>  
                       <Link href={"/about-us"} className='hover:underline mx-5 font-mono'>about us</Link>  
-                      <Link href={"/contact-us"} className='hover:underline mx-5 font-mono'>contact Us</Link>  
+                      <Link href={"/contact-us"} className='hover:underline mx-5 font-mono'>contact us</Link>  
                       <Link href={"/blog"} className='hover:underline mx-5 font-mono'>blog</Link>  
                     <select>
                         <option>admin</option>

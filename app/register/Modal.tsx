@@ -10,7 +10,7 @@ export default class Modal extends Component<modalType> {
     return (
         <div className="fixed top-1/3 left-1/4 shadow-2xl w-1/2 flex flex-col items-center bg-white rounded-md border border-1 border-gray-300">
           <div className="my-5 flex justify-between w-full px-10">
-            <div className="text-2xl">forgot password</div>
+            <div className="text-2xl">reset password</div>
             <div>
               <i className="fa fa-close text-2xl cursor-pointer" onClick={this.props.closeModal}></i>
             </div>

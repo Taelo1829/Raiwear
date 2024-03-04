@@ -22,7 +22,7 @@ const User = getUserDetails()
             <MenuItem href="/" icon="arrow-left" toggleMenu={toggleMenu} />
             <MenuItem href="/" icon="home" routeName={"Home"} toggleMenu={toggleMenu} />
             <MenuItem href="/collection" icon="images" routeName={"Collection"} toggleMenu={toggleMenu} />
-            <MenuItem href="/contact-us" icon="phone" routeName={"Contact Us"} toggleMenu={toggleMenu} />
+            <MenuItem href="/contact-us" icon="phone" routeName={"Contact us"} toggleMenu={toggleMenu} />
             <MenuItem href="/about-us" icon="users" routeName={"About Us"} toggleMenu={toggleMenu} />
            {!User? <>
             <div className='border-b border-1 border-orange-custom p-5 md:px-10 flex justify-between relative'>

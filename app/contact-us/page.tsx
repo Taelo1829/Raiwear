@@ -40,7 +40,7 @@ export default class page extends Component {
                                     <div>
                                         <label>Contact Reason</label>
                                     </div>
-                                    <select className='w-full border border-black p-2'>
+                                    <select className='w-ful p-2'>
                                         <option className='text-gray-300'>Select Reason--</option>
                                         <option >Custom Order</option>
                                         <option >General Query</option>
@@ -50,7 +50,7 @@ export default class page extends Component {
                             <div className='flex justify-between m-3'>
                                 <div className='w-full'>
                                     <div><label>Message</label></div>
-                                    <div ><textarea className='w-full border border-black min-h-20' /></div>
+                                    <div ><textarea className='w-full min-h-20' /></div>
                                 </div>
                             </div>
                             <div className='float-end border border-black p-1 px-4 rounded-xl bg-orange-400 text-white'>
