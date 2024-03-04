@@ -22,7 +22,7 @@ export default class Modal extends Component<modalType> {
             <input
               type="email"
               className="border-b border-black w-full p-2"
-              placeholder="email"
+              placeholder={this.props.title}
               onChange={(e:any)=>this.props.updateEmail? this.props.updateEmail(e.target.value):""}
               value={this.props.email}
             />
@@ -30,7 +30,7 @@ export default class Modal extends Component<modalType> {
           </div>
           <div className="my-5 w-full px-10">
             <div className="float-end">
-              <button className="border border-black p-2" onClick={this.props.sendPassword}>Send</button>
+              <button className="border border-black p-2" onClick={this.props.sendPassword}>SAVE</button>
             </div>
           </div>
         </div>

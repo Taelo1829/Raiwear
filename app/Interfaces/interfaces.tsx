@@ -84,6 +84,7 @@ export type modalType = {
     sendPassword?:()=>void
     title?:string
     updateEmail?:(e:string)=>void
+    updateState?:(e:any) =>void
 }
 
 export type profileStateType = {

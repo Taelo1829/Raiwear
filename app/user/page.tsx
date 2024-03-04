@@ -10,7 +10,7 @@ export default class ClassPage extends Component {
     super(props);
   }
 
-  renderBody(isActive: boolean) {
+  renderBody(isActive: boolean,toggleModal:(title:string)=>void) {
     let userString: string = localStorage.getItem("currentUser") || "{}";
     let User: userType = JSON.parse(userString);
     if (isActive) {
@@ -19,17 +19,17 @@ export default class ClassPage extends Component {
           <div className="my-10">{User.displayName}</div>
           <div className="border border-black w-1/2 px-4">
             <div className="my-4">
-              address <i className="fa fa-chevron-right float-end fa-2x cursor-pointer"></i>
+              address <i className="fa fa-chevron-right float-end fa-2x cursor-pointer" onClick={()=>toggleModal("address")}></i>
             </div>
             <div className="my-4">
-              email <i className="fa fa-chevron-right float-end fa-2x cursor-pointer"></i>
+              email <i className="fa fa-chevron-right float-end fa-2x cursor-pointer" onClick={()=>toggleModal("email")}></i>
             </div>
             <div className="my-4">
-              phone <i className="fa fa-chevron-right float-end fa-2x cursor-pointer"></i>
+              phone <i className="fa fa-chevron-right float-end fa-2x cursor-pointer" onClick={()=>toggleModal("phone")}></i>
             </div>
             <div className="my-4">
               change password{" "}
-              <i className="fa fa-chevron-right float-end fa-2x cursor-pointer"></i>
+              <i className="fa fa-chevron-right float-end fa-2x cursor-pointer" onClick={()=>toggleModal("password")}></i>
             </div>
           </div>
           <div className="my-4">
@@ -104,7 +104,6 @@ export default class ClassPage extends Component {
   }
 
   render() {
-    console.log(this.state.modal)
     return (
       <div className="h-screen flex justify-center">
         <div className="container py-10">
@@ -128,7 +127,7 @@ export default class ClassPage extends Component {
               purchases
             </div>
           </div>
-          {this.renderBody(this.state.isActive)}
+          {this.renderBody(this.state.isActive,this.toggleModal)}
         </div>
         <Modal isOpen={this.state.modal} title={this.state.updateValue} closeModal={()=>this.toggleModal("")}/>
       </div>
@@ -153,5 +152,9 @@ export default class ClassPage extends Component {
       },
     ]
   };
+
+  updateState = (data:any) =>{
+    this.setState({...data})
+  }
 }
 
