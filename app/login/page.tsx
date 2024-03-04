@@ -25,7 +25,8 @@ export default class page extends Component {
     if (value) fieldValidation("password", this.state.password);
     if (value) {
       this.setState({ loading: true });
-      let user = await loginUser(this.state.email, this.state.password);
+      let user:any = await loginUser(this.state.email, this.state.password);
+      if (user.displayName)
       if (typeof window !== "undefined") {
         localStorage.setItem("currentUser", JSON.stringify(user));
         location.href = "/";

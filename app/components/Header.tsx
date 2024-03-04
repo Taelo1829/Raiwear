@@ -34,7 +34,7 @@ const Header = () => {
 
 
 const User = getUserDetails()
-
+    console.log(User)
     return (
         <div className='relative'>
             <div className='flex flex-col  items-center fixed w-screen pb-5 md:h-52 border-b border-1 border-orange-custom z-10 bg-white '>
@@ -44,7 +44,8 @@ const User = getUserDetails()
                         <Link className='flex-1 flex justify-center' href={"/"}><Image alt="Raiwear Logo" src="/img/4.png" className='sm:w-96 md:w-52' width={100} height={100} /></Link>
                         <div className='flex-1 px-5'>
                             <div className='float-end'>
-                              {!User ? <Link href={"login"}>log in &nbsp;</Link>:<></>}
+                              {!User ? <Link href={"login"}>log in &nbsp;</Link>:<Link href={"/user"} className='mx-2'>{User.displayName}</Link>}
+                              
                                 <span>Shopping Bag ({0})</span>
                             </div>
                         </div>
@@ -54,12 +55,12 @@ const User = getUserDetails()
                       <Link href={"/about-us"} className='hover:underline mx-5 font-mono'>about us</Link>  
                       <Link href={"/contact-us"} className='hover:underline mx-5 font-mono'>contact us</Link>  
                       <Link href={"/blog"} className='hover:underline mx-5 font-mono'>blog</Link>  
-                    <select>
+                   {User? <select>
                         <option>admin</option>
                         <option value={"/admin-categories"}>categories</option>
                         <option value={"/clothes"}>clothes</option>
                         <option value={"/specials"}>sales</option>
-                    </select>
+                    </select>:<> </>}
                     </div>
                     {hideSearch ? "" : <Search />}
                     <Menu toggleMenu={updateMenu} hidden={hidden} width={width} />

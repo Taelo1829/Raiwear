@@ -84,3 +84,21 @@ export type modalType = {
     sendPassword:()=>void
     updateEmail:(e:string)=>void
 }
+
+export type profileStateType = {
+    isActive: boolean,
+    purchases: purchaseType[]
+}
+
+export type purchaseType = {
+    status:string
+    deliveryDate?:string
+    address?:string
+    note?:string,
+    items:any[]
+    price:string
+}
+
+export type userType = {
+    displayName:string
+}
