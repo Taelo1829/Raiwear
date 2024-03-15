@@ -64,6 +64,7 @@ export type registerStateType = {
     firstName: string,
     lastName: string,
     email: string,
+    mobileNumber:string,
     password: string,
     receiveEmails: boolean,
     readPolicy: boolean,
@@ -77,17 +78,23 @@ export type loginType = {
     modalOpen: boolean,
 }
 
+export interface LoginInterface {
+    router: any   
+}
+
 export type modalType = {
     isOpen:boolean
     closeModal:()=>void
     email?:string
     sendPassword?:()=>void
-    title?:string
+    title?:any
     updateEmail?:(e:string)=>void
     updateState?:(e:any) =>void
+    saveItem?:(e:any)=>void
 }
 
 export type profileStateType = {
+    email:string
     isActive: boolean,
     purchases: purchaseType[]
     updateValue:string
@@ -105,4 +112,23 @@ export type purchaseType = {
 
 export type userType = {
     displayName:string
+}
+
+export type shoppingCartType = {
+    cart: any[]
+}
+
+export type addressType = {
+    stores: any[]
+    store:number,
+    items:any[]
+}
+
+export interface checkoutInterface{
+    total:string
+    onClick:()=>void
+}
+
+export type adminType = {
+    orderHeaders : string[]
 }

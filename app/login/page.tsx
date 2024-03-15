@@ -4,8 +4,9 @@ import React, { Component } from "react";
 import { fieldValidation } from "../helper/helper";
 import { loginUser, sendForgotPassword } from "../api/auth";
 import Modal from "../register/Modal";
-import { loginType } from "../Interfaces/interfaces";
-export default class page extends Component {
+import { LoginInterface, loginType } from "../Interfaces/interfaces";
+import { useRouter } from "next/navigation";
+class Page extends Component<LoginInterface> {
   state: loginType = {
     email: "",
     password: "",
@@ -17,7 +18,7 @@ export default class page extends Component {
     super(props);
     this.login = this.login.bind(this);
     this.updateState = this.updateState.bind(this);
-    this.sendPassword = this.sendPassword.bind(this)
+    this.sendPassword = this.sendPassword.bind(this);
   }
 
   async login() {
@@ -25,11 +26,10 @@ export default class page extends Component {
     if (value) fieldValidation("password", this.state.password);
     if (value) {
       this.setState({ loading: true });
-      let user:any = await loginUser(this.state.email, this.state.password);
-      if (user.displayName)
-      if (typeof window !== "undefined") {
+      let user: any = await loginUser(this.state.email, this.state.password);
+      if (user.displayName) {
         localStorage.setItem("currentUser", JSON.stringify(user));
-        location.href = "/";
+        this.props.router.push("/");
       }
 
       this.setState({ loading: false });
@@ -40,12 +40,12 @@ export default class page extends Component {
     this.setState(data);
   }
 
-  async sendPassword(){
-    if(fieldValidation("modalEmail",this.state.email)){
-        this.setState({loading:true})
-        await sendForgotPassword(this.state.email);
-        this.setState({loading:false,modalOpen:false})
-        alert("password reset sent to your email")
+  async sendPassword() {
+    if (fieldValidation("modalEmail", this.state.email)) {
+      this.setState({ loading: true });
+      await sendForgotPassword(this.state.email);
+      this.setState({ loading: false, modalOpen: false });
+      alert("password reset sent to your email");
     }
   }
 
@@ -86,11 +86,16 @@ export default class page extends Component {
                 <button
                   className="w-2/3"
                   onClick={() => this.updateState({ modalOpen: true })}
-                 
                 >
                   have you forgotten your password?
                 </button>
-                <Modal isOpen={this.state.modalOpen} closeModal={()=>this.updateState({modalOpen:false})} email={this.state.email}  sendPassword={this.sendPassword} updateEmail={(e:string)=> this.updateState({email:e})}/>
+                <Modal
+                  isOpen={this.state.modalOpen}
+                  closeModal={() => this.updateState({ modalOpen: false })}
+                  email={this.state.email}
+                  sendPassword={this.sendPassword}
+                  updateEmail={(e: string) => this.updateState({ email: e })}
+                />
                 <br />
               </div>
               <div className="w-2/3 px-5">
@@ -107,4 +112,9 @@ export default class page extends Component {
       </div>
     );
   }
+}
+
+export default function login() {
+  const router = useRouter();
+  return <Page router={router} />;
 }

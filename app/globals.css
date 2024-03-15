@@ -28,6 +28,9 @@
   background-color: #ebcea4;
 }
 
+.bg-orange-custom-100{
+  background-color: #d68100;
+}
 .text-red-custom {
   color: #805d5d
 }
@@ -35,5 +38,6 @@
 .border-orange-custom {
   border-color: #d68100;
 }
+
 
 /* background  */

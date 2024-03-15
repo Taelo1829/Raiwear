@@ -20,3 +20,11 @@ export function getUserDetails() {
         }
     }
 }
+
+export function   getTotal(arr){
+  let total = 0;
+  arr.forEach(item=>{
+      total += parseInt(item.price.replace("R",""))
+  })
+  return "R " +total
+}

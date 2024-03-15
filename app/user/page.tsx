@@ -4,6 +4,8 @@ import { profileStateType, userType } from "../Interfaces/interfaces";
 import Link from "next/link";
 import Image from "next/image";
 import Modal from "./Modal";
+import { setUserData} from "../api/database";
+let userData = JSON.parse(localStorage.getItem("currentUser") || "{}");
  
 export default class ClassPage extends Component {
   constructor(props: any) {
@@ -129,13 +131,27 @@ export default class ClassPage extends Component {
           </div>
           {this.renderBody(this.state.isActive,this.toggleModal)}
         </div>
-        <Modal isOpen={this.state.modal} title={this.state.updateValue} closeModal={()=>this.toggleModal("")}/>
+        <Modal 
+        isOpen={this.state.modal} 
+        title={this.state.updateValue}
+         closeModal={()=>this.toggleModal("")}
+         saveItem={this.saveItem}
+         />
       </div>
     );
   }
 
+  saveItem:any = () => {
+    this.setState({modal:false})
+    let postData = {
+      uid:userData.uid,
+    }
+     setUserData(postData)
+  }
+
   state: profileStateType = {
     isActive: true,
+    email:userData.email,
     updateValue:"",
     modal:false,
     purchases: [

@@ -8,10 +8,11 @@ export default class page extends Component {
     firstName: "",
     lastName: "",
     email: "",
+    loading: false,
+    mobileNumber:"",
     password: "",
     receiveEmails: false,
     readPolicy: false,
-    loading: false,
   };
 
   constructor(props: any) {
@@ -76,6 +77,14 @@ export default class page extends Component {
               onChange={(e) => this.setState({ email: e.target.value })}
             />
             <span id="email"></span>
+            <br />
+            <input
+              placeholder="mobile number"
+              className="border-b border-black my-5  w-1/2"
+              value={this.state.mobileNumber}
+              onChange={(e) => this.setState({ mobileNumber: e.target.value })}
+            />
+            <span id="mobileNumber"></span>
             <br />
             <input
               className="border-b border-black my-5  w-1/2"

@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail
 } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 import { initializeApp } from "firebase/app";
 
 const app = initializeApp({
@@ -66,3 +67,4 @@ export async function sendForgotPassword(email){
         return error
     }
 }
+
