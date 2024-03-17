@@ -114,7 +114,7 @@ class Page extends Component<LoginInterface> {
   }
 }
 
-export default function login() {
+export default function Login() {
   const router = useRouter();
   return <Page router={router} />;
 }

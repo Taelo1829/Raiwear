@@ -134,6 +134,7 @@ export type adminType = {
     modal:string
     orderHeaders : string[]
     orders: any[]
+    pagesMenu: string[]
     productsMenu: string[]
     selectedOrder:any
     viewOrder:boolean
