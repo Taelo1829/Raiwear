@@ -7,6 +7,7 @@ import Image from "next/image";
 export default class page extends Component {
   state: adminType = {
     currentView: "orders",
+    modal:"",
     orderHeaders: ["orderID", "customer", "date", "status", "amount"],
     orders: [
       {
@@ -34,7 +35,7 @@ export default class page extends Component {
         images:["/img/4.png","/img/5.png"]
       },
     ],
-    modal:"",
+    productsMenu:["products","products category","products subcategory","product brand"],
     selectedOrder: {
       orderID: 0,
       customer: "",
@@ -67,14 +68,27 @@ export default class page extends Component {
     }
   }
 
+getMenuOptions(){
+  let options:string[] = [];
+  switch(this.state.modal){
+    case "products":
+      options = this.state.productsMenu;
+      break;
+  
+  }
+  return options;
+}
+
   render() {
     let style =
       "border border-1 border-black py-2 w-40 h-10 mx-2 text-center font-normal";
+      let modalStyles = "m-5 p-5 text-white bg-black w-52 text-center flex items-center justify-center"
     let { tableHeaders, dataToUse } = this.getTableData();
     return (
       <div className="h-screen flex justify-center">
         <div className="container">
           <div className="my-5">
+            <div>
             <button
               className={
                 style +
@@ -90,6 +104,12 @@ export default class page extends Component {
               <option>pages</option>
             </select>
             <button className={style}>users</button>
+            </div>
+            <div className="bg-orange-custom my-4 flex ">
+              {this.getMenuOptions().map((option:string,index:number)=>{
+                return <div key={index} className={modalStyles}>{option}</div>
+              })}
+           </div>
           </div>
           <div className="my-10 relative">
             <div>

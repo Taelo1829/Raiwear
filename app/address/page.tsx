@@ -6,7 +6,7 @@ import Checkout from "../components/Checkout";
 import { useRouter } from "next/navigation";
 import { getTotal } from "../helper/helper";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
 
   const [items, setItems] = useState([
@@ -89,4 +89,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
