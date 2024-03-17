@@ -130,5 +130,10 @@ export interface checkoutInterface{
 }
 
 export type adminType = {
+    currentView: string
     orderHeaders : string[]
+    orders: any[]
+    selectedOrder:any
+    viewOrder:boolean
 }
+
