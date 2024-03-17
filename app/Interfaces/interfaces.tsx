@@ -133,6 +133,7 @@ export type adminType = {
     currentView: string
     orderHeaders : string[]
     orders: any[]
+    modal:string
     selectedOrder:any
     viewOrder:boolean
 }

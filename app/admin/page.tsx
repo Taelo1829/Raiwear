@@ -34,6 +34,7 @@ export default class page extends Component {
         images:["/img/4.png","/img/5.png"]
       },
     ],
+    modal:"",
     selectedOrder: {
       orderID: 0,
       customer: "",
@@ -82,9 +83,9 @@ export default class page extends Component {
             >
               orders
             </button>
-            <select className={style}>
-              <option>products</option>
-            </select>
+            <button className={style} onClick={()=>this.setState({modal : this.state.modal === "products"?"":"products"})}>
+          products <i className={"fa fa-chevron-"+(this.state.modal === "products"?"up":"down")}></i>
+            </button>
             <select className={style}>
               <option>pages</option>
             </select>
