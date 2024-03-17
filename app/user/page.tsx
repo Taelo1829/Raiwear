@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Modal from "./Modal";
 import { setUserData} from "../api/database";
+import { getUserDetails } from "../helper/helper";
 let userData = JSON.parse(localStorage.getItem("currentUser") || "{}");
  
 export default class ClassPage extends Component {
@@ -13,8 +14,7 @@ export default class ClassPage extends Component {
   }
 
   renderBody(isActive: boolean,toggleModal:(title:string)=>void) {
-    let userString: string = localStorage.getItem("currentUser") || "{}";
-    let User: userType = JSON.parse(userString);
+    let User: userType = getUserDetails();
     if (isActive) {
       return (
         <div>

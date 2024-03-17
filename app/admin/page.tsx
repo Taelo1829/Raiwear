@@ -39,6 +39,10 @@ export default class page extends Component {
         tableHeaders = this.state.orderHeaders;
         dataToUse = this.state.orders;
         break;
+      case "products":
+        tableHeaders = this.state.productHeaders;
+        dataToUse = this.state.products;
+        break;
     }
     return {
       tableHeaders,
@@ -67,7 +71,7 @@ export default class page extends Component {
                 orders
               </button>
               <button
-                className={style}
+                className={style + (this.state.productsMenu.includes(this.state.currentView) ? " bg-gray-200" : "")}
                 onClick={() =>
                   this.setState({
                     modal: this.state.modal === "products" ? "" : "products",
@@ -112,6 +116,14 @@ export default class page extends Component {
           </div>
           <div className="my-10 relative">
             <div>
+        {this.state.currentView === "products"?      <>
+            <button className={style + " bg-black text-white"}>
+               add new
+              </button>
+              <button className={style + " bg-black text-white"}>
+             upload products
+              </button>
+              </>:<></>}
               <button className={style + " bg-black text-white"}>
                 export to excel
               </button>
@@ -128,7 +140,7 @@ export default class page extends Component {
                   {tableHeaders.map((item, index) => {
                     if (index == 0) {
                       return (
-                        <th key={item} className="min-w-24">
+                        <th key={item} className="max-w-24">
                           {item}
                         </th>
                       );
@@ -136,7 +148,7 @@ export default class page extends Component {
                       return (
                         <th
                           key={item}
-                          className="border-l border-black min-w-24"
+                          className="border-l border-black max-w-24"
                         >
                           {item}
                         </th>
@@ -316,6 +328,22 @@ export default class page extends Component {
       },
     ],
     pagesMenu: ["about", "banner", "contact us"],
+    productHeaders: ["heading","collection","subcategory","size","description","brand","price","quantity","sale","sale start date","sale end date","images","actions"],
+    products:[{
+      heading:"Budweiser bucket hat",
+      collection:"Accessories",
+      subcategory:"unisex",
+      size:"one size fit all",
+      description:"",
+      brand:"RAIWEAR  Original",
+      price:"R100",
+      quantity:1,
+      sale:"",
+      "sale start date":"",
+      "sale end date":"",
+      "images":"",
+      "actions":true
+    }],
     productsMenu: [
       "products",
       "products category",
