@@ -17,7 +17,7 @@ export default class ClassPage extends Component {
     if (isActive) {
       return (
         <div>
-          <div className="my-10">{userData.displayName}</div>
+          <div className="my-10">{userData?.displayName}</div>
           <div className="border border-black w-1/2 px-4">
             <div className="my-4">
               address <i className="fa fa-chevron-right float-end fa-2x cursor-pointer" onClick={()=>toggleModal("address")}></i>
@@ -143,7 +143,7 @@ export default class ClassPage extends Component {
   saveItem:any = () => {
     this.setState({modal:false})
     let postData = {
-      uid:userData.uid,
+      uid:userData?.uid,
     }
      setUserData(postData)
   }

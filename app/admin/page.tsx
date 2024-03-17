@@ -384,8 +384,6 @@ export default class page extends Component {
     productsMenu: [
       "products",
       "products category",
-      "products subcategory",
-      "product brand",
     ],
     selectedOrder: {
       orderID: 0,
