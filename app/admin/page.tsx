@@ -11,6 +11,12 @@ export default class page extends Component {
     }
   }
   
+  changeView(view: string) {
+    this.setState({ currentView: view});
+    setTimeout(()=>{
+      this.setState({modal:""})
+    },200)
+  }
 
   getMenuOptions() {
     let options: string[] = [];
@@ -40,59 +46,11 @@ export default class page extends Component {
     };
   }
 
-  state: adminType = {
-    currentView: "orders",
-    modal: "",
-    orderHeaders: ["orderID", "customer", "date", "status", "amount"],
-    orders: [
-      {
-        orderID: 1,
-        customer: "John",
-        date: "2021-12-12",
-        status: "pending",
-        amount: "R200",
-        email: "john@gmail.com",
-        phone: "0712345678",
-        address: "1234, 5th Avenue, New York, USA",
-        note: "SUNNINGHILL SQUARE \nPostnet",
-        images: ["/img/4.png", "/img/5.png", "/img/6.png"],
-      },
-      {
-        orderID: 2,
-        customer: "Jane",
-        date: "2021-12-11",
-        status: "pending",
-        amount: "R200",
-        email: "jane@gmail.com",
-        phone: "0712345678",
-        address: "1234, 5th Avenue, New York, USA",
-        note: "JOHANNESBURG \n pexi store",
-        images: ["/img/4.png", "/img/5.png"],
-      },
-    ],
-    pagesMenu: ["about", "banner", "contact us"],
-    productsMenu: [
-      "products",
-      "products category",
-      "products subcategory",
-      "product brand",
-    ],
-    selectedOrder: {
-      orderID: 0,
-      customer: "",
-      date: new Date().toISOString().split("T")[0],
-      status: "",
-      amount: "",
-      images: [],
-    },
-    viewOrder: false,
-  };
-
   render() {
     let style =
       "border border-1 border-black py-2 w-40 h-10 mx-2 text-center font-normal";
     let modalStyles =
-      "m-5 p-5 text-white bg-black w-52 text-center flex items-center justify-center";
+      "m-5 p-5 text-white bg-black w-52 text-center flex items-center justify-center cursor-pointer border border-black";
     let { tableHeaders, dataToUse } = this.getTableData();
     return (
       <div className="h-screen flex justify-center">
@@ -104,6 +62,7 @@ export default class page extends Component {
                   style +
                   (this.state.currentView == "orders" ? " bg-gray-200" : "")
                 }
+                onClick={(e)=>this.changeView("orders")}
               >
                 orders
               </button>
@@ -144,7 +103,7 @@ export default class page extends Component {
             <div className="bg-orange-custom my-4 flex ">
               {this.getMenuOptions().map((option: string, index: number) => {
                 return (
-                  <div key={index} className={modalStyles}>
+                  <div key={index} className={modalStyles +(option === this.state.currentView ?" bg-white text-black":"")} onClick={()=> this.changeView(option)}>
                     {option}
                   </div>
                 );
@@ -325,5 +284,56 @@ export default class page extends Component {
       </div>
     );
   }
+
+  state: adminType = {
+    currentView: "orders",
+    modal: "",
+    orderHeaders: ["orderID", "customer", "date", "status", "amount"],
+    orders: [
+      {
+        orderID: 1,
+        customer: "John",
+        date: "2021-12-12",
+        status: "pending",
+        amount: "R200",
+        email: "john@gmail.com",
+        phone: "0712345678",
+        address: "1234, 5th Avenue, New York, USA",
+        note: "SUNNINGHILL SQUARE \nPostnet",
+        images: ["/img/4.png", "/img/5.png", "/img/6.png"],
+      },
+      {
+        orderID: 2,
+        customer: "Jane",
+        date: "2021-12-11",
+        status: "pending",
+        amount: "R200",
+        email: "jane@gmail.com",
+        phone: "0712345678",
+        address: "1234, 5th Avenue, New York, USA",
+        note: "JOHANNESBURG \n pexi store",
+        images: ["/img/4.png", "/img/5.png"],
+      },
+    ],
+    pagesMenu: ["about", "banner", "contact us"],
+    productsMenu: [
+      "products",
+      "products category",
+      "products subcategory",
+      "product brand",
+    ],
+    selectedOrder: {
+      orderID: 0,
+      customer: "",
+      date: new Date().toISOString().split("T")[0],
+      status: "",
+      amount: "",
+      images: [],
+    },
+    viewOrder: false,
+  };
+  
+
+ 
 }
 ``;

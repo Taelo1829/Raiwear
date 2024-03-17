@@ -52,7 +52,7 @@ class Page extends Component<LoginInterface>{
   }
 }
 
-export default function shopping() {
+export default function Shopping() {
 const router = useRouter()  
   return (
     <div>
