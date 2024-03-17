@@ -137,6 +137,8 @@ export type adminType = {
     productHeaders: string[]
     products:any[]
     pagesMenu: string[]
+    productsCategories:any[]
+    productsCategoryMenu: string[]
     productsMenu: string[]
     selectedOrder:any
     viewOrder:boolean

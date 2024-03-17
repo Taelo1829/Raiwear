@@ -6,7 +6,7 @@ import Image from "next/image";
 import Modal from "./Modal";
 import { setUserData} from "../api/database";
 import { getUserDetails } from "../helper/helper";
-let userData = JSON.parse(localStorage.getItem("currentUser") || "{}");
+let userData =  getUserDetails();
  
 export default class ClassPage extends Component {
   constructor(props: any) {
@@ -14,11 +14,10 @@ export default class ClassPage extends Component {
   }
 
   renderBody(isActive: boolean,toggleModal:(title:string)=>void) {
-    let User: userType = getUserDetails();
     if (isActive) {
       return (
         <div>
-          <div className="my-10">{User.displayName}</div>
+          <div className="my-10">{userData.displayName}</div>
           <div className="border border-black w-1/2 px-4">
             <div className="my-4">
               address <i className="fa fa-chevron-right float-end fa-2x cursor-pointer" onClick={()=>toggleModal("address")}></i>

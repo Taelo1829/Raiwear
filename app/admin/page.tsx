@@ -43,6 +43,10 @@ export default class page extends Component {
         tableHeaders = this.state.productHeaders;
         dataToUse = this.state.products;
         break;
+      case "products category":
+        tableHeaders = this.state.productsCategoryMenu;
+        dataToUse = this.state.productsCategories;
+        break;
     }
     return {
       tableHeaders,
@@ -116,31 +120,40 @@ export default class page extends Component {
           </div>
           <div className="my-10 relative">
             <div>
-        {this.state.currentView === "products"?      <>
+        {this.state.currentView === "products" || this.state.currentView === "products category"? <>
             <button className={style + " bg-black text-white"}>
                add new
               </button>
-              <button className={style + " bg-black text-white"}>
+            {this.state.currentView === "products" ?  <button className={style + " bg-black text-white"}>
              upload products
-              </button>
+              </button>:""}
               </>:<></>}
-              <button className={style + " bg-black text-white"}>
+             {this.state.currentView !== "products category" ?<button className={style + " bg-black text-white"}>
                 export to excel
-              </button>
+              </button>:<></>}
             </div>
             <div className="my-5">
               <table className="w-full border border-black">
                 <thead className="h-14">
-                  <th className="border-r border-black">
+                {this.state.currentView === "orders"? <th className="border-r border-black">
                     <input
                       type="checkbox"
                       className="h-6 w-6 border border-1 border-black bg-transparent"
                     />
-                  </th>
+                  </th> : <></>}
                   {tableHeaders.map((item, index) => {
                     if (index == 0) {
                       return (
                         <th key={item} className="max-w-24">
+                          {item}
+                        </th>
+                      );
+                    } else if(item === "actions"){
+                      return (
+                        <th
+                          key={item}
+                          className="border-l border-black max-w-24 text-end "
+                        >
                           {item}
                         </th>
                       );
@@ -160,13 +173,13 @@ export default class page extends Component {
                   {dataToUse.map((item, index) => {
                     return (
                       <tr className="border-t border-black h-14" key={index}>
-                        <td className="flex justify-center items-center h-14">
+                          {this.state.currentView === "orders"?<td className="flex justify-center items-center h-14">
                           <input
                             type="checkbox"
                             className="h-6 w-6 border border-1 border-black bg-transparent"
                           />
-                        </td>
-                        {tableHeaders.map((header, headerIndex) => {
+                        </td>:""}
+                        {tableHeaders.filter(header => header !== "actions").map((header, headerIndex) => {
                           return (
                             <td
                               key={headerIndex}
@@ -180,6 +193,12 @@ export default class page extends Component {
                             </td>
                           );
                         })}
+                        {item.actions ?<td className="px-5 border-l border-black">
+                          <div className="flex justify-end">
+                            <div><i className="fa fa-edit fa-2x mx-5"></i></div>
+                            <div><i className="fa fa-trash fa-2x"></i></div>
+                          </div>
+                        </td>:<></>}
                       </tr>
                     );
                   })}
@@ -298,7 +317,7 @@ export default class page extends Component {
   }
 
   state: adminType = {
-    currentView: "orders",
+    currentView: "products category",
     modal: "",
     orderHeaders: ["orderID", "customer", "date", "status", "amount"],
     orders: [
@@ -344,6 +363,11 @@ export default class page extends Component {
       "images":"",
       "actions":true
     }],
+    productsCategories:[{
+      title:"Accessories",
+      actions:true
+    }],
+    productsCategoryMenu:["title","actions"],
     productsMenu: [
       "products",
       "products category",
@@ -360,8 +384,4 @@ export default class page extends Component {
     },
     viewOrder: false,
   };
-  
-
- 
-}
-``;
+};
