@@ -150,7 +150,7 @@ export default class ClassPage extends Component {
 
   state: profileStateType = {
     isActive: true,
-    email:userData.email,
+    email:userData?.email,
     updateValue:"",
     modal:false,
     purchases: [

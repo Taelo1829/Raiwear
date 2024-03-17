@@ -130,6 +130,8 @@ export interface checkoutInterface{
 }
 
 export type adminType = {
+    contacts: any[]
+    contactsMenu: string[]
     currentView: string
     modal:string
     orderHeaders : string[]

@@ -47,6 +47,10 @@ export default class page extends Component {
         tableHeaders = this.state.productsCategoryMenu;
         dataToUse = this.state.productsCategories;
         break;
+      case "contact us":
+        tableHeaders = this.state.contactsMenu;
+        dataToUse = this.state.contacts;
+        break;
     }
     return {
       tableHeaders,
@@ -144,7 +148,8 @@ export default class page extends Component {
                   {tableHeaders.map((item, index) => {
                     if (index == 0) {
                       return (
-                        <th key={item} className="max-w-24">
+                        <th
+                        key={item} className="max-w-24">
                           {item}
                         </th>
                       );
@@ -152,7 +157,7 @@ export default class page extends Component {
                       return (
                         <th
                           key={item}
-                          className="border-l border-black max-w-24 text-end "
+                          className="border-l border-black max-w-24 text-end px-2 "
                         >
                           {item}
                         </th>
@@ -182,6 +187,7 @@ export default class page extends Component {
                         {tableHeaders.filter(header => header !== "actions").map((header, headerIndex) => {
                           return (
                             <td
+                          
                               key={headerIndex}
                               className={
                                 "border-l border-black text-center " +
@@ -193,7 +199,7 @@ export default class page extends Component {
                             </td>
                           );
                         })}
-                        {item.actions ?<td className="px-5 border-l border-black">
+                        {item.actions ?<td className="px-5 border-l border-black w-10">
                           <div className="flex justify-end">
                             <div><i className="fa fa-edit fa-2x mx-5"></i></div>
                             <div><i className="fa fa-trash fa-2x"></i></div>
@@ -317,6 +323,13 @@ export default class page extends Component {
   }
 
   state: adminType = {
+    contacts:[{
+      "contact reason":"product enquiry",
+      "email address":"example@gmail.com",
+      "cc":"admin@gmail.com",
+      "actions":true
+    }],
+    contactsMenu: ["contact reason", "email address","cc","actions"],
     currentView: "products category",
     modal: "",
     orderHeaders: ["orderID", "customer", "date", "status", "amount"],
