@@ -142,6 +142,9 @@ export type adminType = {
     productsCategories:any[]
     productsCategoryMenu: string[]
     productsMenu: string[]
+    productModal:boolean
+    productsSubCategories:any[]
+    productsSubCategoryMenu: string[]
     selectedOrder:any
     viewOrder:boolean
 }

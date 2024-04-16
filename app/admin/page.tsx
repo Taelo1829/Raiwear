@@ -47,6 +47,10 @@ export default class page extends Component {
         tableHeaders = this.state.productsCategoryMenu;
         dataToUse = this.state.productsCategories;
         break;
+        case "products subcategory":
+        tableHeaders = this.state.productsSubCategoryMenu;
+        dataToUse = this.state.productsSubCategories;
+        break;
       case "contact us":
         tableHeaders = this.state.contactsMenu;
         dataToUse = this.state.contacts;
@@ -58,14 +62,26 @@ export default class page extends Component {
     };
   }
 
+  handleAddNew() {
+    switch (this.state.currentView) {
+      case "products":
+        break;
+      case "products category":
+        break;
+      case "contact us":
+        break;
+    }
+  }
+
   render() {
     let style =
       "border border-1 border-black py-2 w-40 h-10 mx-2 text-center font-normal";
     let modalStyles =
       "m-5 p-5 text-white bg-black w-52 text-center flex items-center justify-center cursor-pointer border border-black";
     let { tableHeaders, dataToUse } = this.getTableData();
+    let productVisibility = this.state.productModal ? "visible" : "hidden";
     return (
-      <div className="h-screen flex justify-center">
+      <div className="h-screen flex justify-center relative">
         <div className="container">
           <div className="my-5">
             <div>
@@ -125,7 +141,7 @@ export default class page extends Component {
           <div className="my-10 relative">
             <div>
         {this.state.currentView === "products" || this.state.currentView === "products category"? <>
-            <button className={style + " bg-black text-white"}>
+            <button className={style + " bg-black text-white"} onClick={()=> this.setState({productModal:true})}>
                add new
               </button>
             {this.state.currentView === "products" ?  <button className={style + " bg-black text-white"}>
@@ -318,6 +334,67 @@ export default class page extends Component {
             )}
           </div>
         </div>
+        <div className={"absolute shadow-2xl top-10 bg-white w-1/2 border border-black rounded-lg h-1/2 p-5 " + productVisibility}>
+             <div className="text-2xl font-bold flex justify-between mb-4">
+              <div>Add New Product</div>
+              <div><i className="fa fa-close cursor-pointer" onClick={()=> this.setState({productModal:false})}></i></div>
+              </div>
+              <div className="my-4 flex">
+                <div className="w-full px-5">
+                <div className="text-2xl my-3">heading</div>
+                <input type="text" className="w-full border-b border-black"/>
+                </div>
+                <div className="w-full px-5">
+                <div className="text-2xl my-3">description</div>
+                <input type="text" className="w-full border-b border-black"/>
+                </div>
+                <div className="w-full px-5">
+                <div className="text-2xl my-3">brand</div>
+                <input type="text" className="w-full border-b border-black"/>
+                </div>
+              </div>
+              <div className="my-4 flex">
+                <div className="w-full px-5">
+                <div className="text-2xl my-3">size</div>
+                <input type="text" className="w-full border-b border-black"/>
+                </div>
+                <div className="w-full px-5">
+                <div className="text-2xl my-3">prize</div>
+                <input type="text" className="w-full border-b border-black"/>
+                </div>
+                <div className="w-full px-5">
+                <div className="text-2xl my-3">quantity</div>
+                <input type="text" className="w-full border-b border-black"/>
+                </div>
+                <div className="w-full px-5">
+                <div className="text-2xl my-3">sale</div>
+                <input type="text" className="w-full border-b border-black"/>
+                </div>
+              </div>
+              <div className="flex my-3">
+              <div className="w-full px-5">
+                <div className="text-2xl my-3">Collection</div>
+              <select className="w-full text-center border border-black rounded-lg">
+                <option> -- select -- </option>
+               {this.state.productsCategories.map((item,index)=>{
+                  return <option key={index}>{item.title}</option>
+               })}
+                 </select>
+                </div>
+                <div className="w-full px-5">
+                <div className="text-2xl my-3">Category</div>
+              <select className="w-full text-center border border-black rounded-lg">
+                <option> -- select -- </option>
+               {this.state.productsSubCategories.map((item,index)=>{
+                  return <option key={index}>{item.title}</option>
+               })}
+                 </select>
+                </div>
+              </div>
+              <div>
+                
+              </div>
+        </div>
       </div>
     );
   }
@@ -330,7 +407,7 @@ export default class page extends Component {
       "actions":true
     }],
     contactsMenu: ["contact reason", "email address","cc","actions"],
-    currentView: "products category",
+    currentView: "orders",
     modal: "",
     orderHeaders: ["orderID", "customer", "date", "status", "amount"],
     orders: [
@@ -377,6 +454,7 @@ export default class page extends Component {
       "actions":true
     }],
     productsCategories:[{
+      Id:1,
       title:"Accessories",
       actions:true
     }],
@@ -384,7 +462,15 @@ export default class page extends Component {
     productsMenu: [
       "products",
       "products category",
+      "products subcategory",
     ],
+    productModal: false,
+    productsSubCategories: [{
+      Id:1,
+      title:"unisex",
+      actions:true
+    }],
+    productsSubCategoryMenu: ["title", "actions"],
     selectedOrder: {
       orderID: 0,
       customer: "",
