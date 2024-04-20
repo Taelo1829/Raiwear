@@ -3,8 +3,13 @@
 import React, { Component } from "react";
 import { adminType } from "../Interfaces/interfaces";
 import Image from "next/image";
+import Link from "next/link";
 
 export default class page extends Component {
+  constructor(props:any){
+    super(props);
+    this.handleAddNew = this.handleAddNew.bind(this);
+  }
   amountClick(type: string, item: any) {
     if (type === "amount") {
       this.setState({ selectedOrder: item, viewOrder: true });
@@ -55,6 +60,9 @@ export default class page extends Component {
         tableHeaders = this.state.contactsMenu;
         dataToUse = this.state.contacts;
         break;
+        case "size":
+        tableHeaders = ["size","actions"];
+        dataToUse = this.state.sizes;
     }
     return {
       tableHeaders,
@@ -63,6 +71,15 @@ export default class page extends Component {
   }
 
   handleAddNew() {
+    switch (this.state.currentView) {
+      case "products category":
+        break;
+      case "contact us":
+        break;
+    }
+  }
+
+  handSave() {
     switch (this.state.currentView) {
       case "products":
         break;
@@ -79,7 +96,6 @@ export default class page extends Component {
     let modalStyles =
       "m-5 p-5 text-white bg-black w-52 text-center flex items-center justify-center cursor-pointer border border-black";
     let { tableHeaders, dataToUse } = this.getTableData();
-    let productVisibility = this.state.productModal ? "visible" : "hidden";
     return (
       <div className="h-screen flex justify-center relative">
         <div className="container">
@@ -131,7 +147,7 @@ export default class page extends Component {
             <div className="bg-orange-custom my-4 flex ">
               {this.getMenuOptions().map((option: string, index: number) => {
                 return (
-                  <div key={index} className={modalStyles +(option === this.state.currentView ?" bg-white text-black":"")} onClick={()=> this.changeView(option)}>
+                  <div key={index} className={modalStyles +(option === this.state.currentView ?" bg-gray- text-black":"")} onClick={()=> this.changeView(option)}>
                     {option}
                   </div>
                 );
@@ -140,10 +156,12 @@ export default class page extends Component {
           </div>
           <div className="my-10 relative">
             <div>
-        {this.state.currentView === "products" || this.state.currentView === "products category"? <>
-            <button className={style + " bg-black text-white"} onClick={()=> this.setState({productModal:true})}>
+        {this.renderAddNew()? <>
+            <Link href={{
+              pathname:"AddNew",
+              query:{id:this.state.id,currentView:this.state.currentView}}}  className={style + " bg-black text-white"} onClick={this.handleAddNew}>
                add new
-              </button>
+              </Link>
             {this.state.currentView === "products" ?  <button className={style + " bg-black text-white"}>
              upload products
               </button>:""}
@@ -239,7 +257,7 @@ export default class page extends Component {
             </div>
             {this.state.viewOrder ? (
               <div className="absolute -top-16 w-full">
-                <div className="float-end w-1/2  border-black border-4 bg-white p-5">
+                <div className="float-end w-1/2  border-black border-4 bg-white p-5 text-black">
                   <div className="flex justify-between mb-5">
                     <div>
                       {" "}
@@ -334,69 +352,13 @@ export default class page extends Component {
             )}
           </div>
         </div>
-        <div className={"absolute shadow-2xl top-10 bg-white w-1/2 border border-black rounded-lg h-1/2 p-5 " + productVisibility}>
-             <div className="text-2xl font-bold flex justify-between mb-4">
-              <div>Add New Product</div>
-              <div><i className="fa fa-close cursor-pointer" onClick={()=> this.setState({productModal:false})}></i></div>
-              </div>
-              <div className="my-4 flex">
-                <div className="w-full px-5">
-                <div className="text-2xl my-3">heading</div>
-                <input type="text" className="w-full border-b border-black"/>
-                </div>
-                <div className="w-full px-5">
-                <div className="text-2xl my-3">description</div>
-                <input type="text" className="w-full border-b border-black"/>
-                </div>
-                <div className="w-full px-5">
-                <div className="text-2xl my-3">brand</div>
-                <input type="text" className="w-full border-b border-black"/>
-                </div>
-              </div>
-              <div className="my-4 flex">
-                <div className="w-full px-5">
-                <div className="text-2xl my-3">size</div>
-                <input type="text" className="w-full border-b border-black"/>
-                </div>
-                <div className="w-full px-5">
-                <div className="text-2xl my-3">prize</div>
-                <input type="text" className="w-full border-b border-black"/>
-                </div>
-                <div className="w-full px-5">
-                <div className="text-2xl my-3">quantity</div>
-                <input type="text" className="w-full border-b border-black"/>
-                </div>
-                <div className="w-full px-5">
-                <div className="text-2xl my-3">sale</div>
-                <input type="text" className="w-full border-b border-black"/>
-                </div>
-              </div>
-              <div className="flex my-3">
-              <div className="w-full px-5">
-                <div className="text-2xl my-3">Collection</div>
-              <select className="w-full text-center border border-black rounded-lg">
-                <option> -- select -- </option>
-               {this.state.productsCategories.map((item,index)=>{
-                  return <option key={index}>{item.title}</option>
-               })}
-                 </select>
-                </div>
-                <div className="w-full px-5">
-                <div className="text-2xl my-3">Category</div>
-              <select className="w-full text-center border border-black rounded-lg">
-                <option> -- select -- </option>
-               {this.state.productsSubCategories.map((item,index)=>{
-                  return <option key={index}>{item.title}</option>
-               })}
-                 </select>
-                </div>
-              </div>
-              <div>
-                
-              </div>
-        </div>
+       
       </div>
     );
+  }
+
+  renderAddNew(){
+    return this.state.currentView === "products" || this.state.currentView === "products category" || this.state.currentView === "size"
   }
 
   state: adminType = {
@@ -408,6 +370,7 @@ export default class page extends Component {
     }],
     contactsMenu: ["contact reason", "email address","cc","actions"],
     currentView: "orders",
+    id:0,
     modal: "",
     orderHeaders: ["orderID", "customer", "date", "status", "amount"],
     orders: [
@@ -463,8 +426,8 @@ export default class page extends Component {
       "products",
       "products category",
       "products subcategory",
+      "size"
     ],
-    productModal: false,
     productsSubCategories: [{
       Id:1,
       title:"unisex",
@@ -479,6 +442,7 @@ export default class page extends Component {
       amount: "",
       images: [],
     },
+    sizes:[],
     viewOrder: false,
   };
 };

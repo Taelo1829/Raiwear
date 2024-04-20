@@ -133,6 +133,7 @@ export type adminType = {
     contacts: any[]
     contactsMenu: string[]
     currentView: string
+    id:number
     modal:string
     orderHeaders : string[]
     orders: any[]
@@ -142,10 +143,42 @@ export type adminType = {
     productsCategories:any[]
     productsCategoryMenu: string[]
     productsMenu: string[]
-    productModal:boolean
     productsSubCategories:any[]
     productsSubCategoryMenu: string[]
     selectedOrder:any
+    sizes:string[]
     viewOrder:boolean
 }
 
+export type productType = {
+    brand:string
+    description:string
+    heading:string
+    id:number
+    loading:boolean
+    message:string
+    price:string
+    quantity:number
+    sale:string
+    collection:string
+    category:string
+    images:string[]
+    saleEndDate:string
+    saleStartDate:string
+    show:boolean
+    size:string
+    status:string
+}
+
+export interface ToastInterface {
+    title:string
+    message: string
+    setShow: (message?:string,status?:string) => void
+    show: boolean
+    status: string
+}
+
+export interface AddNewInterface {
+    router: any
+    id:string | null
+}

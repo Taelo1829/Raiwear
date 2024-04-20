@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, child, get } from "firebase/database";
+import { getDatabase, ref, child, get, set } from "firebase/database";
+import { createUser } from "./auth";
 
 const app = initializeApp({
   apiKey: "AIzaSyB0QLzsKYQ-sSvztuDqkQ8S_mHLT1g7e9Y",
@@ -23,15 +24,22 @@ async function getUserData(postData) {
 
 async function setUserData(postData) {
   try {
-    let results = await getUserData(postData);
-   if(Object.keys(results).length ) {
-
-   }
-   
-
+     await getUserData(postData);
   } catch (error) {
     return error;
   }
 }
 
-export { setUserData };
+async function saveProduct(postData) {
+  const prodRef = child(dbRef,`products/${postData.id}`);
+  try {
+ await set(prodRef,{
+    ...postData
+  });
+  return true
+  } catch (error) {
+    return false;
+  }
+}
+
+export { setUserData,saveProduct };
