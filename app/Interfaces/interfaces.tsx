@@ -7,8 +7,15 @@ export interface CategoryItemInterface {
     image: string
 }
 
-export interface FooterItemInterface {
-    title: string
+export type CategoriesStateInterface = {
+    active: number
+}
+
+export type ContactUsInterface = {
+    firstName: string,
+    lastName: string,
+    email: string,
+    mobile: string
 }
 
 export interface FooterColumnInterface {
@@ -16,12 +23,16 @@ export interface FooterColumnInterface {
     titles: string[]
 }
 
-export interface RouteNameInterface {
-    icon: string,
-    routeName: string,
-    route: string,
-    updateMenu: () => {},
-    hasDelete: boolean,
+
+export interface FooterItemInterface {
+    title: string
+}
+
+export interface InputInterface {
+    label: string
+    onChange: (data: any) => void
+    valueToUpdate: string,
+    value: string
 }
 
 export interface MenuInterface {
@@ -37,22 +48,21 @@ export interface MenuItemInterface {
     toggleMenu: () => void
 }
 
-export interface InputInterface {
-    label: string
-    onChange: (data: any) => void
-    valueToUpdate: string,
-    value: string
+export interface RouteNameInterface {
+    icon: string,
+    routeName: string,
+    route: string,
+    updateMenu: () => {},
+    hasDelete: boolean,
 }
 
-export type CategoriesStateInterface = {
-    active: number
-}
-
-export type ContactUsInterface = {
-    firstName: string,
-    lastName: string,
-    email: string,
-    mobile: string
+export type sizeType = {
+    id:number
+    loading:boolean
+    message:string
+    show:boolean
+    size:string
+    status:string
 }
 
 export interface ShoppingListInterface {

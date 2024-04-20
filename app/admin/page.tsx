@@ -96,6 +96,19 @@ export default class page extends Component {
     let modalStyles =
       "m-5 p-5 text-white bg-black w-52 text-center flex items-center justify-center cursor-pointer border border-black";
     let { tableHeaders, dataToUse } = this.getTableData();
+
+    let addNewRoute = "";
+    switch (this.state.currentView) {
+      case "products":
+        addNewRoute = "AddNew";
+        break;
+      case "size":
+        addNewRoute = "AddNewSize";
+        break;
+      case "contact us":
+        addNewRoute = "AddNew";
+        break;
+    }
     return (
       <div className="h-screen flex justify-center relative">
         <div className="container">
@@ -158,8 +171,8 @@ export default class page extends Component {
             <div>
         {this.renderAddNew()? <>
             <Link href={{
-              pathname:"AddNew",
-              query:{id:this.state.id,currentView:this.state.currentView}}}  className={style + " bg-black text-white"} onClick={this.handleAddNew}>
+              pathname:addNewRoute,
+              query:{id:this.state.id}}}  className={style + " bg-black text-white"} onClick={this.handleAddNew}>
                add new
               </Link>
             {this.state.currentView === "products" ?  <button className={style + " bg-black text-white"}>

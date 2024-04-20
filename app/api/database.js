@@ -22,14 +22,6 @@ async function getUserData(postData) {
   return user;
 }
 
-async function setUserData(postData) {
-  try {
-     await getUserData(postData);
-  } catch (error) {
-    return error;
-  }
-}
-
 async function saveProduct(postData) {
   const prodRef = child(dbRef,`products/${postData.id}`);
   try {
@@ -42,4 +34,26 @@ async function saveProduct(postData) {
   }
 }
 
-export { setUserData,saveProduct };
+async function saveSize(postData) {
+  const sizeRef = child(dbRef,`sizes/${postData.id}`);
+  try {
+ await set(sizeRef,{
+    ...postData
+  });
+  return true
+  } catch (error) {
+    console.error(error)
+    return false;
+  }
+
+}
+
+async function setUserData(postData) {
+  try {
+     await getUserData(postData);
+  } catch (error) {
+    return error;
+  }
+}
+
+export { setUserData,saveProduct,saveSize };
