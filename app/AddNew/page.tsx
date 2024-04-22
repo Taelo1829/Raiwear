@@ -1,7 +1,7 @@
 "use client"
 import React, { Component } from 'react'
 import { AddNewInterface, productType } from '../Interfaces/interfaces'
-import { getProductCategories, getSizes, loadProduct, saveProduct } from '../api/database';
+import { getProductCategories, getProductSubcategories, getSizes, loadProduct, saveProduct } from '../api/database';
 import Toast from '../components/Toast';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -18,6 +18,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
   }
 
   handleImageUpload = (e:any) => {
+    this.setState({pictureLoading:true})
     const files = e.target.files;
     const images:any = [];
     for (let i = 0; i < files.length; i++) {
@@ -26,10 +27,15 @@ import { useRouter, useSearchParams } from 'next/navigation';
       reader.onload = (e) => {
         if(e.target && e.target.result)
         images.push(e.target.result);
+        this.setState({ images:[...this.state.images,...images] });
+        setTimeout(()=>{
+          this.setState({pictureLoading:false})
+        },1000)
       };
       reader.readAsDataURL(file);
     }
-    this.setState({ images });
+    
+   
   }
 
   async loadData(){
@@ -37,7 +43,15 @@ import { useRouter, useSearchParams } from 'next/navigation';
     let data = await loadProduct(id)
     let sizes = await getSizes()
     let collections = await getProductCategories()
-    this.setState({...data,loading:false,sizes,collections,id})
+    let categories = await getProductSubcategories()
+    this.setState({
+      ...data,
+      categories,
+      collections,
+      id,
+      loading:false,
+      sizes,
+    })
   }
 
   render() {
@@ -115,9 +129,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
             </select>
            </div>
            <div className="w-full px-5">
-           <div className="text-2xl my-3">Category</div>
+           <div className="text-2xl my-3">category</div>
          <select className="w-full text-center border border-black rounded-lg"  onChange={(e)=>this.setState({category:e.target.value})}  value={this.state.category}>
            <option> -- select -- </option>
+           {this.state.categories.map(item => <option key={item.id} value={item.title}>{item.title}</option>)}
             </select>
            </div>
          </div>
@@ -125,9 +140,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
          <div className='px-5'>
             <label className='bg-black text-white p-5 rounded' htmlFor='images'>add images &nbsp;<i className='fa fa-plus-circle text-white'></i></label>
             <input type="file" className='hidden' id="images"  onChange={this.handleImageUpload}/>
-            <div className={this.state.images.length?'border border-1 my-5 border-black flex justify-content-between':""}>
+            {this.state.pictureLoading?
+            <div className='text-center'>loading...</div>:<div className={this.state.images.length?'border border-1 my-5 border-black flex justify-content-between':""}>
             {this.renderCurrentImages()}
-            </div>
+            </div>}
          </div>
          <div className="h-20 flex justify-end items-end">
           <div className="border px-10 py-2 text-2xl rounded-3xl font-medium shadow-lg cursor-pointer bg-black text-white" onClick={this.save}>save</div>
@@ -172,6 +188,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
   state:productType = {
     brand:"",
+    category:"",
+    categories:[],
     collection:"",
     collections:[],
     description:"",
@@ -179,10 +197,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
     id:0,
     loading:true,
     message:"Product Successfully Saved",
+    pictureLoading:false,
     price:"",
     quantity:1,
     sale:"",
-    category:"",
     images:[],
     saleEndDate:"",
     saleStartDate:"",

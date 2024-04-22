@@ -172,6 +172,8 @@ export type adminType = {
 
 export type productType = {
     brand:string
+    categories:any[]
+    collection:string
     collections:any[]
     description:string
     heading:string
@@ -179,9 +181,9 @@ export type productType = {
     loading:boolean
     message:string
     price:string
+    pictureLoading:boolean
     quantity:number
     sale:string
-    collection:string
     category:string
     images:string[]
     saleEndDate:string

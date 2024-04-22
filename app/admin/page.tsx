@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { adminType } from "../Interfaces/interfaces";
 import Image from "next/image";
 import Link from "next/link";
-import { getProductCategories, getProducts, getSizes } from "../api/database";
+import { getProductCategories, getProductSubcategories, getProducts, getSizes } from "../api/database";
 import { getLocalData } from "../helper/helper";
 
 export default class page extends Component {
@@ -52,7 +52,13 @@ export default class page extends Component {
         break;
       case "products":
         tableHeaders = this.state.productHeaders;
-        dataToUse = this.state.products;
+        dataToUse = this.state.products.map(item =>({
+          ...item,
+          images: item.images? <Link className="text-blue-500" href={{
+            pathname:"ViewImages",
+            query:{id:item.id}
+          }}>View Images</Link>:""
+        }));
         break;
       case "products category":
         tableHeaders = this.state.productsCategoryMenu;
@@ -87,11 +93,16 @@ export default class page extends Component {
       actions:true
     }))
 
+    let productsSubCategories = (await getProductSubcategories()).map((item:any) =>({
+      ...item,
+      actions:true
+    }))
+
     let sizes = (await getSizes()).map((item:any) =>({
      ...item,
       actions:true
     }))
-    this.setState({productsCategories,products,sizes,loading:false})
+    this.setState({productsCategories,products,productsSubCategories,sizes,loading:false})
   }
 
   selectValue(){
@@ -204,7 +215,7 @@ export default class page extends Component {
                 export to excel
               </button>:<></>}
             </div>
-            <div className="my-5">
+            <div className="my-5 max-h-96 overflow-y-scroll">
               <table className="w-full border border-black">
                 <thead className="h-14">
                   <tr>
@@ -255,6 +266,9 @@ export default class page extends Component {
                           />
                         </td>:""}
                         {tableHeaders.filter(header => header !== "actions").map((header, headerIndex) => {
+                          if(header === "subcategory"){
+                            header = "category"
+                          }
                           return (
                             <td
                           
@@ -474,11 +488,7 @@ export default class page extends Component {
       "images":"",
       "actions":true
     }],
-    productsCategories:[{
-      Id:1,
-      title:"Accessories",
-      actions:true
-    }],
+    productsCategories:[],
     productsCategoryMenu:["title","actions"],
     productsMenu: [
       "products",
@@ -486,11 +496,7 @@ export default class page extends Component {
       "products subcategory",
       "size"
     ],
-    productsSubCategories: [{
-      Id:1,
-      title:"unisex",
-      actions:true
-    }],
+    productsSubCategories: [],
     productsSubCategoryMenu: ["title", "actions"],
     selectedOrder: {
       orderID: 0,

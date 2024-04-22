@@ -43,6 +43,23 @@ async function getProductCategories(){
 
 }
 
+async function getProductSubcategories(){
+  let productCategories = [];
+  let results = await get(child(dbRef, `productSubcategories`));
+  if (results.exists()) {
+    productCategories = results.val();
+    if(!Array.isArray(productCategories)){
+      productCategories = Object.values(productCategories);
+    }
+  }
+  return productCategories.sort((a,b)=>{
+    if(a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+    return 1
+  });
+
+}
+
+
 async function getSizes(){
   let sizes = [];
   let results = await get(child(dbRef, `sizes`));
@@ -134,5 +151,7 @@ async function setUserData(postData) {
 }
 
 export {
-  getProductCategories,getProducts, getSizes,loadProduct,setUserData,saveProduct,saveProductCategory,saveProductSubcategory,saveSize
+  getProductCategories,getProducts, getSizes,getProductSubcategories,
+  loadProduct,
+  setUserData,saveProduct,saveProductCategory,saveProductSubcategory,saveSize
  };
