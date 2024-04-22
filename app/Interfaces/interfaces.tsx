@@ -2,14 +2,14 @@ export interface BannerInterface {
     heading: string
 }
 
+export type CategoriesStateInterface = {
+    active: number
+}
 export interface CategoryItemInterface {
     title: string
     image: string
 }
 
-export type CategoriesStateInterface = {
-    active: number
-}
 
 export type ContactUsInterface = {
     firstName: string,
@@ -64,6 +64,16 @@ export type sizeType = {
     size:string
     status:string
 }
+
+export type pcType = {
+    id:number
+    loading:boolean
+    message:string
+    show:boolean
+    title:string
+    status:string
+}
+
 
 export interface ShoppingListInterface {
     index: number,
@@ -143,7 +153,7 @@ export type adminType = {
     contacts: any[]
     contactsMenu: string[]
     currentView: string
-    id:number
+    loading:boolean
     modal:string
     orderHeaders : string[]
     orders: any[]
@@ -162,6 +172,7 @@ export type adminType = {
 
 export type productType = {
     brand:string
+    collections:any[]
     description:string
     heading:string
     id:number
@@ -177,6 +188,7 @@ export type productType = {
     saleStartDate:string
     show:boolean
     size:string
+    sizes:any[]
     status:string
 }
 
@@ -189,6 +201,7 @@ export interface ToastInterface {
 }
 
 export interface AddNewInterface {
-    router: any
     id:string | null
+    router: any
+    value:string|null
 }

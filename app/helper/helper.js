@@ -28,3 +28,9 @@ export function   getTotal(arr){
   })
   return "R " +total
 }
+
+export function getLocalData(name){
+  if(typeof window !== "undefined"){
+    return localStorage.getItem(name)
+  }
+}

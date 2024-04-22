@@ -1,7 +1,7 @@
 "use client"
 import React, { Component } from 'react'
 import { AddNewInterface, productType } from '../Interfaces/interfaces'
-import { saveProduct } from '../api/database';
+import { getProductCategories, getSizes, loadProduct, saveProduct } from '../api/database';
 import Toast from '../components/Toast';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -13,8 +13,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
   }
   
    componentDidMount(){
-    let id = this.props.id || 0
-    this.setState({loading:false,id})
+    
+    this.loadData()
   }
 
   handleImageUpload = (e:any) => {
@@ -30,6 +30,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
       reader.readAsDataURL(file);
     }
     this.setState({ images });
+  }
+
+  async loadData(){
+    let id = this.props.id
+    let data = await loadProduct(id)
+    let sizes = await getSizes()
+    let collections = await getProductCategories()
+    this.setState({...data,loading:false,sizes,collections,id})
   }
 
   render() {
@@ -95,14 +103,15 @@ import { useRouter, useSearchParams } from 'next/navigation';
          <div className="flex my-3">
          <div className="w-full px-5">
            <div className="text-2xl my-3">size</div>
-           <select className="w-full text-center border border-black rounded-lg"  onChange={(e)=>this.setState({size:e.target.value})}  value={this.state.category}>
+           <select className="w-full text-center border border-black rounded-lg"  onChange={(e)=>this.setState({size:e.target.value})}  value={this.state.size}>
            <option> -- select -- </option>
+           {this.state.sizes.map((size:any)=>(<option key={size.id} value={size.size}>{size.size}</option>))}
             </select></div>
          <div className="w-full px-5">
-           <div className="text-2xl my-3">Collection</div>
+           <div className="text-2xl my-3">collection</div>
          <select className="w-full text-center border border-black rounded-lg"  onChange={(e)=>this.setState({collection:e.target.value})}  value={this.state.collection}>
            <option> -- select -- </option>
-      
+            {this.state.collections.map(item => <option key={item.id} value={item.title}>{item.title}</option>)}
             </select>
            </div>
            <div className="w-full px-5">
@@ -163,21 +172,23 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
   state:productType = {
     brand:"",
+    collection:"",
+    collections:[],
     description:"",
     heading:"",
     id:0,
     loading:true,
     message:"Product Successfully Saved",
     price:"",
-    quantity:0,
+    quantity:1,
     sale:"",
-    collection:"",
     category:"",
     images:[],
     saleEndDate:"",
     saleStartDate:"",
     show:false,
     size:"",
+    sizes:[],
     status:"success",
   }
 
@@ -196,5 +207,5 @@ export default function Page(){
   const router = useRouter()
   const search = useSearchParams()
 const id = search.get("id")
-  return <AddNew id={id} router={router}/>
+  return <AddNew id={id} router={router} value={null}/>
 }

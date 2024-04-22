@@ -4,20 +4,26 @@ import React, { Component } from "react";
 import { adminType } from "../Interfaces/interfaces";
 import Image from "next/image";
 import Link from "next/link";
+import { getProductCategories, getProducts, getSizes } from "../api/database";
+import { getLocalData } from "../helper/helper";
 
 export default class page extends Component {
   constructor(props:any){
     super(props);
-    this.handleAddNew = this.handleAddNew.bind(this);
   }
   amountClick(type: string, item: any) {
     if (type === "amount") {
       this.setState({ selectedOrder: item, viewOrder: true });
     }
   }
+
+  componentDidMount(){
+    this.loadData()
+  }
   
   changeView(view: string) {
     this.setState({ currentView: view});
+    localStorage.setItem("currentView", view);
     setTimeout(()=>{
       this.setState({modal:""})
     },200)
@@ -70,27 +76,39 @@ export default class page extends Component {
     };
   }
 
-  handleAddNew() {
-    switch (this.state.currentView) {
-      case "products category":
-        break;
-      case "contact us":
-        break;
-    }
+  async loadData(){
+    let productsCategories = (await getProductCategories()).map((item:any) =>({
+      ...item,
+      actions:true
+    }))
+
+    let products = (await getProducts()).map((item:any) =>({
+      ...item,
+      actions:true
+    }))
+
+    let sizes = (await getSizes()).map((item:any) =>({
+     ...item,
+      actions:true
+    }))
+    this.setState({productsCategories,products,sizes,loading:false})
   }
 
-  handSave() {
-    switch (this.state.currentView) {
-      case "products":
-        break;
+  selectValue(){
+    switch(this.state.currentView){
       case "products category":
-        break;
-      case "contact us":
-        break;
+        return "title"
+      case "products subcategory":
+        return "title"
+      case "size":
+        return "size"
+        default:""
     }
+    return ""
   }
 
   render() {
+    if(this.state.loading) return <div className="text-center">loading ...</div>
     let style =
       "border border-1 border-black py-2 w-40 h-10 mx-2 text-center font-normal";
     let modalStyles =
@@ -105,14 +123,17 @@ export default class page extends Component {
       case "size":
         addNewRoute = "AddNewSize";
         break;
-      case "contact us":
-        addNewRoute = "AddNew";
+      case "products category":
+        addNewRoute = "AddNewPC";
+        break;
+      case "products subcategory":
+        addNewRoute = "AddNewPSC";
         break;
     }
     return (
       <div className="h-screen flex justify-center relative">
         <div className="container">
-          <div className="my-5">
+          <div className="my-5"> 
             <div>
               <button
                 className={
@@ -160,7 +181,7 @@ export default class page extends Component {
             <div className="bg-orange-custom my-4 flex ">
               {this.getMenuOptions().map((option: string, index: number) => {
                 return (
-                  <div key={index} className={modalStyles +(option === this.state.currentView ?" bg-gray- text-black":"")} onClick={()=> this.changeView(option)}>
+                  <div key={index} className={modalStyles +(option === this.state.currentView ?" bg-white text-gray-950":"")} onClick={()=> this.changeView(option)}>
                     {option}
                   </div>
                 );
@@ -172,7 +193,7 @@ export default class page extends Component {
         {this.renderAddNew()? <>
             <Link href={{
               pathname:addNewRoute,
-              query:{id:this.state.id}}}  className={style + " bg-black text-white"} onClick={this.handleAddNew}>
+              query:{id:this.getNewId()}}}  className={style + " bg-black text-white p-4"}>
                add new
               </Link>
             {this.state.currentView === "products" ?  <button className={style + " bg-black text-white"}>
@@ -186,6 +207,7 @@ export default class page extends Component {
             <div className="my-5">
               <table className="w-full border border-black">
                 <thead className="h-14">
+                  <tr>
                 {this.state.currentView === "orders"? <th className="border-r border-black">
                     <input
                       type="checkbox"
@@ -220,6 +242,7 @@ export default class page extends Component {
                       );
                     }
                   })}
+                  </tr>
                 </thead>
                 <tbody>
                   {dataToUse.map((item, index) => {
@@ -248,7 +271,9 @@ export default class page extends Component {
                         })}
                         {item.actions ?<td className="px-5 border-l border-black w-10">
                           <div className="flex justify-end">
-                            <div><i className="fa fa-edit fa-2x mx-5"></i></div>
+                             <Link href={{
+              pathname:addNewRoute,
+              query:{id:item.id,value:item[this.selectValue()]}}}  ><i className="fa fa-edit fa-2x mx-5"></i></Link>
                             <div><i className="fa fa-trash fa-2x"></i></div>
                           </div>
                         </td>:<></>}
@@ -371,7 +396,27 @@ export default class page extends Component {
   }
 
   renderAddNew(){
-    return this.state.currentView === "products" || this.state.currentView === "products category" || this.state.currentView === "size"
+    switch(this.state.currentView){
+      case "products":
+      case "products category":
+      case "products subcategory":
+      case "size":
+        return true
+        default : return false
+    }
+  }
+
+  getNewId(){
+    switch(this.state.currentView){
+      case "products":
+        return this.state.products.length + 1
+      case "products category":
+        return this.state.productsCategories.length + 1
+      case "products subcategory":
+        return this.state.productsSubCategories.length + 1
+      case "size":
+        return this.state.sizes.length + 1
+    }
   }
 
   state: adminType = {
@@ -382,8 +427,8 @@ export default class page extends Component {
       "actions":true
     }],
     contactsMenu: ["contact reason", "email address","cc","actions"],
-    currentView: "orders",
-    id:0,
+    currentView: getLocalData("currentView") || "orders",
+    loading:true,
     modal: "",
     orderHeaders: ["orderID", "customer", "date", "status", "amount"],
     orders: [
