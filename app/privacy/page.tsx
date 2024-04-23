@@ -94,7 +94,7 @@ the Internet or electronic storage is 100% secure.
 </div>
 <br/>
 <div>
-7. Children's Privacy
+7. Children&apos;s Privacy
 </div>
 <br/>
 <div className='pl-5'>
