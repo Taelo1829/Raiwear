@@ -15,7 +15,7 @@ const OnSale: React.FC<OnSaleInterface> = ({products = []}) => {
                 <div className='py-1 text-left font-extralight'>{item.size}</div>
                 <div className='py-1 text-left font-extralight'>{item.description}</div>
                 <div className='p-1 flex justify-between '>
-                    <div className='bg-white rounded-xl w-20 h-8 flex justify-center items-center'>{item.price}</div>
+                    <div className='bg-white rounded-xl w-20 h-8 flex justify-center items-center'>{item?.sale}</div>
                     <div className=''><i className='fa fa-plus-circle fa-2x text-white cursor-pointer'></i></div>
                 </div>
                 </div>

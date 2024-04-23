@@ -107,7 +107,7 @@ import { doc } from 'firebase/firestore';
            <input type="number" className="w-full border-b border-black"  onChange={(e)=>this.setState({quantity:e.target.value})}  value={this.state.quantity}/>
            </div>
            <div className="w-full px-5">
-           <div className="text-2xl my-3">sale</div>
+           <div className="text-2xl my-3">sale price</div>
            <input type="text" className="w-full border-b border-black"  onChange={(e)=>this.setState({sale:e.target.value})}  value={this.state.sale}/>
            </div>
          </div>

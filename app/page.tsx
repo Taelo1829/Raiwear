@@ -32,7 +32,7 @@ const [products, setProducts] = React.useState([])
    loading?<div className="text-center">loading...</div>: <div className='flex justify-center'>
       <div className='container'>
         <ShopNewSection />
-        <OnSale products={products}/>
+        <OnSale products={products.filter((item:any) => item?.sale && new Date(item.saleStartDate) <= new Date() && new Date(item.saleEndDate) >= new Date())}/>
         <ShoppingCategory products={products}/>
         <EmailUs />
         <div className="flex justify-between py-5">

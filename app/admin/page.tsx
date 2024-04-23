@@ -269,6 +269,14 @@ export default class page extends Component {
                           if(header === "subcategory"){
                             header = "category"
                           }
+
+                          if(header === "sale start date"){
+                            header = "saleStartDate"
+                          }
+
+                          if(header === "sale end date"){
+                            header = "saleEndDate"
+                          }
                           return (
                             <td
                           
