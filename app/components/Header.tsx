@@ -40,7 +40,11 @@ const User = getUserDetails()
                 <div className='container pt-5 '>
                     <div className='flex justify-between items-center'>
                         <div className=' flex-1 px-5 md:inline-block cursor-pointer' data-modal-target="modal"><Link href={"/collection"}><i className='fa fa-bars md:text-4xl sm:text-2xl' ></i></Link></div>
-                        <Link className='flex-1 flex justify-center' href={"/"}><Image alt="Raiwear Logo" src="/img/4.png" className='sm:w-96 md:w-52' width={100} height={100} /></Link>
+                        <Link className='flex-1 flex justify-center' href={"/"}>
+                        <div  className="sm:w-96 md:w-64 h-20 bg-cover bg-center" style={{backgroundImage:`url(/img/4.png)`}}>
+       </div>
+                        </Link>
+                     
                         <div className='flex-1 px-5'>
                             <div className='float-end'>
                                {pathName === "/shopping"? <Link href={"/contact-us"}>help</Link>:""}
