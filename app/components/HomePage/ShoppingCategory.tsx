@@ -22,7 +22,7 @@ const ShoppingCategory: React.FC<OnSaleInterface> = ({products}) => {
                 <p className='text-3xl text-red-custom p-3 text-center '>SHOP BY CATEGORY</p>
                 <div className='flex justify-center w-100'>
                     {collections.map((item:any,index:number)=>{
-                        return <CategoryItem title={item.collection} image={item.image} />
+                        return <CategoryItem title={item.collection} image={item.image} key={index} />
                     })}
                 </div>
             </div>
