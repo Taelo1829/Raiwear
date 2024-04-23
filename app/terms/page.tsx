@@ -12,7 +12,7 @@ export default class page extends Component {
 This document (together with the documents mentioned herein) establishes the
 general terms and conditions that govern the use of this website
 (www.raiwear.co.za) and the purchase of products on it (hereinafter referred to as
-the "Conditions").</div>
+the &quot;Conditions&quot;).</div>
 <br/>
 <div>
 We urge you to read the Conditions and our Privacy and Cookies Policy (hereinafter,
