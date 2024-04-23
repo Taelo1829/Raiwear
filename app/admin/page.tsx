@@ -55,8 +55,8 @@ export default class page extends Component {
         dataToUse = this.state.products.map(item =>({
           ...item,
           images: item.images? <Link className="text-blue-500" href={{
-            pathname:"ViewImages",
-            query:{id:item.id}
+            pathname:"AddNew",
+            query:{id:item.id,viewType:"images"}
           }}>View Images</Link>:""
         }));
         break;

@@ -6,6 +6,7 @@ import InstaSection from "./components/HomePage/InstaSection"
 import EmailUs from "./components/HomePage/EmailUs"
 import OnSale from "./components/HomePage/OnSale"
 import { useRouter } from "next/router"
+import { getProducts } from "./api/database"
 export default function Home(props:any) {
   useEffect(() => {
     if(props.searchParams.signout === ""){
@@ -14,13 +15,25 @@ export default function Home(props:any) {
       window.location.href = "/"
       }
     }
-  })
+  },[])
+
+  useEffect(()=>{
+    loadData()
+},[])
+
+async function loadData(){
+ let products = await getProducts();
+ setProducts(products)
+    setLoading(false)
+}
+const [loading, setLoading] = React.useState(true)
+const [products, setProducts] = React.useState([])
   return (
-    <div className='flex justify-center'>
+   loading?<div className="text-center">loading...</div>: <div className='flex justify-center'>
       <div className='container'>
         <ShopNewSection />
-        <OnSale />
-        <ShoppingCategory />
+        <OnSale products={products}/>
+        <ShoppingCategory products={products}/>
         <EmailUs />
         <div className="flex justify-between py-5">
           <div>instagram</div>

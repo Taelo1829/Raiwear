@@ -48,21 +48,8 @@ export interface MenuItemInterface {
     toggleMenu: () => void
 }
 
-export interface RouteNameInterface {
-    icon: string,
-    routeName: string,
-    route: string,
-    updateMenu: () => {},
-    hasDelete: boolean,
-}
-
-export type sizeType = {
-    id:number
-    loading:boolean
-    message:string
-    show:boolean
-    size:string
-    status:string
+export interface OnSaleInterface {
+    products: any[]
 }
 
 export type pcType = {
@@ -71,6 +58,24 @@ export type pcType = {
     message:string
     show:boolean
     title:string
+    status:string
+}
+
+export interface RouteNameInterface {
+    icon: string,
+    routeName: string,
+    route: string,
+    updateMenu: () => {},
+    hasDelete: boolean,
+}
+
+
+export type sizeType = {
+    id:number
+    loading:boolean
+    message:string
+    show:boolean
+    size:string
     status:string
 }
 
@@ -205,5 +210,6 @@ export interface ToastInterface {
 export interface AddNewInterface {
     id:string | null
     router: any
-    value:string|null
+    value?:string|null
+    viewType?: string|null
 }

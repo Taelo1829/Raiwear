@@ -1,7 +1,8 @@
 import React from 'react'
 import CategoryItem from './CategoryItem'
+import { OnSaleInterface } from '@/app/Interfaces/interfaces'
 
-const ShoppingCategory = () => {
+const ShoppingCategory: React.FC<OnSaleInterface> = ({products}) => {
     return (
         <div className='bg-orange-custom my-5'>
             <div>

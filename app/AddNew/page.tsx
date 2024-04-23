@@ -4,6 +4,7 @@ import { AddNewInterface, productType } from '../Interfaces/interfaces'
 import { getProductCategories, getProductSubcategories, getSizes, loadProduct, saveProduct } from '../api/database';
 import Toast from '../components/Toast';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { doc } from 'firebase/firestore';
 
  class AddNew extends Component<AddNewInterface>{
   constructor(props:any){
@@ -13,7 +14,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
   }
   
    componentDidMount(){
-    
     this.loadData()
   }
 
@@ -52,6 +52,13 @@ import { useRouter, useSearchParams } from 'next/navigation';
       loading:false,
       sizes,
     })
+
+    if(this.props.viewType === "images"){
+     let el = document.getElementById("getImages");
+     if(el) {
+      el.scrollIntoView({behavior:"smooth"})
+     }
+    }
   }
 
   render() {
@@ -141,7 +148,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
             <label className='bg-black text-white p-5 rounded' htmlFor='images'>add images &nbsp;<i className='fa fa-plus-circle text-white'></i></label>
             <input type="file" className='hidden' id="images"  onChange={this.handleImageUpload}/>
             {this.state.pictureLoading?
-            <div className='text-center'>loading...</div>:<div className={this.state.images.length?'border border-1 my-5 border-black flex justify-content-between':""}>
+            <div className='text-center'>loading...</div>:<div id="getImages" className={this.state.images.length?'border border-1 my-5 border-black flex justify-content-between':""}>
             {this.renderCurrentImages()}
             </div>}
          </div>
@@ -153,10 +160,17 @@ import { useRouter, useSearchParams } from 'next/navigation';
     )
   }
 
+  removePicture(id:number){
+    let images = this.state.images.filter((image:any, index:number) => index !== id)
+    this.setState({images})
+  }
+
   renderCurrentImages = () => {
     return this.state.images.map((image:any, index:number) => {
       return (
-        <div key={index} className="w-48 h-48 bg-cover bg-center border border-1 border-black" style={{backgroundImage:`url(${image})`}}></div>
+        <div key={index} className="w-48 h-48 bg-cover bg-center border border-1 border-black" style={{backgroundImage:`url(${image})`}}>
+          <i className='fa fa-close fa-2x text-red-500 float-end cursor-pointer' onClick={()=>this.removePicture(index)}></i>
+        </div>
       )
     })
   }
@@ -225,5 +239,6 @@ export default function Page(){
   const router = useRouter()
   const search = useSearchParams()
 const id = search.get("id")
-  return <AddNew id={id} router={router} value={null}/>
+const viewType = search.get("viewType")
+  return <AddNew id={id} router={router} viewType={viewType}/>
 }
