@@ -15,7 +15,6 @@ const ShoppingCategory: React.FC<OnSaleInterface> = ({products}) => {
         
         }
     }
-    console.log(collections)
     return (
         <div className='bg-orange-custom my-5'>
             <div className='h-96 overflow-x-scroll px-2'>

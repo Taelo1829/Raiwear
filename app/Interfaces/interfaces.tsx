@@ -4,12 +4,18 @@ export interface BannerInterface {
 
 export type CategoriesStateInterface = {
     active: number
+    collection:any[]
 }
 export interface CategoryItemInterface {
     title: string
     image: string
 }
 
+export type shopStateType = {
+    loading:boolean
+    products: any[]
+    categories: any[]
+}
 
 export type ContactUsInterface = {
     firstName: string,
@@ -141,6 +147,8 @@ export type userType = {
 
 export type shoppingCartType = {
     cart: any[]
+    loading:boolean
+    products:any[]
 }
 
 export type addressType = {
