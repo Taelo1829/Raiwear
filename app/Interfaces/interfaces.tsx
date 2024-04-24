@@ -15,6 +15,7 @@ export type shopStateType = {
     loading:boolean
     products: any[]
     categories: any[]
+    cart: any[]
 }
 
 export type ContactUsInterface = {
