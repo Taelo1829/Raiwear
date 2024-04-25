@@ -30,6 +30,8 @@ class Page extends Component<LoginInterface> {
       if (user.displayName) {
         localStorage.setItem("currentUser", JSON.stringify(user));
         this.props.router.push("/");
+      }else{
+        alert("invalid email or password")
       }
 
       this.setState({ loading: false });

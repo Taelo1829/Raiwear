@@ -31,7 +31,7 @@ renderCategories(){
 }
 
 renderSale(product:any){
-	if(product.sale){
+	if(product.sale && new Date(product.saleStartDate) < new Date() && new Date(product.saleEndDate) > new Date()){
 		return <div className=' my-2'><span className='text-2xl font-bold'>{product.sale}</span> &nbsp;<span className='decoration-gray-600 text-gray-600 line-through font-thin'>({product.price})</span></div>
 	}else{
 		return <div className='text-2xl font-bold my-2'>{product.price}</div>
@@ -44,7 +44,7 @@ renderProducts(){
 		<div className='m-2'>
 		<div className='text-2xl my-2'>{product.heading}</div>
 		<div className='my-2 cursor-pointer text-blue-600 underline'>{product.collection}</div>
-		<div className='flex justify-between items-end'>
+		<div className='flex justify-between items-end '>
 	    {this.renderSale(product)}
 		<div className=''><i className='fa fa-plus-circle fa-2x cursor-pointer' onClick={()=>this.updateCart(product.id)}></i></div>
 		</div>
