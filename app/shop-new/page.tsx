@@ -108,9 +108,9 @@ export default class page extends Component {
   }
   renderProducts() {
     return this.state.filteredProducts.map((product, index) => (
-      <div key={index} className="mx-5 my-5 shadow-lg max-h-96 w-72 pb-2">
+      <div key={index} className="m-3 shadow-lg max-h-96 w-72 pb-2">
         <div
-          className="flex bg-blue-100 w-80 h-48 justify-center items-center bg-cover bg-center"
+          className="flex bg-blue-100 w-72 h-48 justify-center items-center bg-cover bg-center"
           style={
             product.images
               ? { backgroundImage: `url(${product.images[0]})` }
