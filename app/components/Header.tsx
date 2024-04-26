@@ -20,10 +20,10 @@ const Header = () => {
   const [cartCount, setCartCount] = useState(0);
 
   function updateCartCount(){
-    setTimeout(() =>{
+    setInterval(() =>{
         let cart = JSON.parse(localStorage.getItem('cart') || "[]");
         setCartCount(cart.length)
-    },100)
+    },1000)
   }
   function openMenu() {
     setHidden("");

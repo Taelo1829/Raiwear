@@ -12,10 +12,13 @@ export interface CategoryItemInterface {
 }
 
 export type shopStateType = {
+    cart: any[]
+    category:string
+    categories: string[]
+    filteredProducts:any[]
     loading:boolean
     products: any[]
-    categories: any[]
-    cart: any[]
+    subcategories:any[]
 }
 
 export type ContactUsInterface = {
