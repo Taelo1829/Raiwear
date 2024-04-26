@@ -67,7 +67,7 @@ export default class page extends Component {
         item.collections.includes(category) && this.state.category.toLowerCase() === category
       );
       return (
-        <div >
+        <div key={index} >
           <div className="border-b-2 flex justify-between py-5 px-8 text-2xl cursor-pointer" onClick={() => this.updateCategory(category)}>
             <div>{category}</div>
             <div>
