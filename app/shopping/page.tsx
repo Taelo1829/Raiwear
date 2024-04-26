@@ -70,7 +70,7 @@ class Page extends Component<LoginInterface> {
             shopping bag({this.state.cart.length})
           </b>
           <hr className="my-5 border border-1 border-black" />
-          <div className="max-h-1/2 flex">
+          <div className="max-h-1/2 flex flex-wrap overflow-scroll">
             {this.state.cart.map((item, index) => {
               return (
                 <div key={index} className="flex justify-between my-5 mx-2">
