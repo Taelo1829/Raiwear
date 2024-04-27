@@ -129,6 +129,7 @@ export default class page extends Component {
             <div className="my-2 cursor-pointer text-blue-600 underline" onClick={()=>this.updateSubCategory(product.category)}>
               {product.category}
             </div>
+			<div>{product.size}</div>
           </div>
           <div className="flex justify-between items-end">
             {this.renderSale(product)}
