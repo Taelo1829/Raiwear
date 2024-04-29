@@ -212,6 +212,7 @@ export type productType = {
     sizes?:any[]
     status?:string
     products?:any[]
+    viewFull?: boolean
 }
 
 export interface ToastInterface {

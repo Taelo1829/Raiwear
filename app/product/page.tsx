@@ -75,17 +75,25 @@ export default class page extends Component {
     if (this.state.loading)
       return <div className="text-center">Loading...</div>;
     return (
-      <div className="flex justify-center ">
+      <div className="flex justify-center relative">
+        {this.state.viewFull?<div className="absolute shadow-2xl w-5/6 h-full bg-white p-5">
+          <div> <i className="fa fa-close fa-2x float-end cursor-pointer" onClick={()=> this.setState({viewFull:false})}></i></div>
+          <div className="flex">
+        <div>{this.renderImages()}</div>
+        <div className="w-full flex justify-center items-center">
+          <Image image={this.state.active} width="w-104" height="h-full" />
+        </div>
+        </div>
+        </div>:<></>}
         <div className="container flex justify-center">
           <div className="shadow-xl flex p-5">
             {this.renderImages()}
             <div
               className={`flex flex-col 
                 shadow-2xl p-5 h-96 w-96 hover:border-orange-300 hover:border hover:border-1 mx-10`}
+                onClick={()=> this.setState({viewFull:true})}
             >
-              <div>
-                <i className="fa fa-expand fa-2xl float-end py-2 cursor-pointer"></i>
-              </div>
+             
               <div>
                 <Image image={this.state.active} height="h-80" width="w-80" />
               </div>
@@ -154,5 +162,6 @@ export default class page extends Component {
     saleEndDate: "",
     saleStartDate: "",
     size: "",
+    viewFull: false,
   };
 }
