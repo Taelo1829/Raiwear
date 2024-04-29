@@ -189,26 +189,27 @@ export type adminType = {
 
 export type productType = {
     brand:string
-    categories:any[]
+    categories?:any[]
     collection:string
-    collections:any[]
+    collections?:any[]
     description:string
     heading:string
     id:number
     loading:boolean
-    message:string
+    message?:string
     price:string
-    pictureLoading:boolean
-    quantity:number
+    pictureLoading?:boolean
+    quantity?:number
     sale:string
     category:string
     images:string[]
     saleEndDate:string
     saleStartDate:string
-    show:boolean
+    show?:boolean
     size:string
-    sizes:any[]
-    status:string
+    sizes?:any[]
+    status?:string
+    products?:any[]
 }
 
 export interface ToastInterface {
@@ -217,6 +218,13 @@ export interface ToastInterface {
     setShow: (message?:string,status?:string) => void
     show: boolean
     status: string
+}
+
+export interface ImageInterface {
+    children?: any ,
+    image: string,
+    width?: string
+    height?: string
 }
 
 export interface AddNewInterface {
