@@ -188,6 +188,7 @@ export type adminType = {
 }
 
 export type productType = {
+    active?:string
     brand:string
     categories?:any[]
     collection:string
@@ -222,7 +223,7 @@ export interface ToastInterface {
 
 export interface ImageInterface {
     children?: any ,
-    image: string,
+    image?: string,
     width?: string
     height?: string
 }
