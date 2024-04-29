@@ -109,14 +109,18 @@ export default class page extends Component {
   renderProducts() {
     return this.state.filteredProducts.map((product, index) => (
       <div key={index} className="m-3 shadow-lg max-h-96 w-72 pb-2">
-        <div
+        <Link
+		href={{
+			pathname:"/product",
+			query:{id:product.id}
+		}}
           className="flex bg-blue-100 w-72 h-48 justify-center items-center bg-cover bg-center"
           style={
             product.images
               ? { backgroundImage: `url(${product.images[0]})` }
               : {}
           }
-        ></div>
+        ></Link>
         <div className="m-2">
           <div className=" h-32">
             <div className="text-2xl my-2">{product.heading}</div>
