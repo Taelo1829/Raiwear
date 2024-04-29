@@ -6,6 +6,8 @@ import Link from "next/link";
 
 export default class page extends Component {
   componentDidMount(): void {
+    let { subcategory = "", category = "" } = this.props.searchParams;
+    this.setState({ subcategory, category });
     this.loadData();
   }
   async loadData() {
@@ -39,10 +41,17 @@ export default class page extends Component {
       products,
       filteredProducts: products,
       categories,
-      loading: false,
       cart,
       subcategories,
     });
+
+    if (this.state.subcategory) {
+      this.updateSubCategory(this.state.subcategory.toLowerCase());
+    } else if (this.state.category) {
+      this.updateCategory(this.state.category);
+    }else {
+      this.setState({ loading: false });
+    }
   }
   updateCategory(category: string) {
     let filteredProducts = this.state.products.filter(
@@ -50,25 +59,33 @@ export default class page extends Component {
         category === "" ||
         product.collection.toLowerCase() === category.toLowerCase()
     );
-    this.setState({ category, filteredProducts ,subcategory:""});
+    this.setState({ category, filteredProducts, subcategory: "",loading:false });
   }
 
   updateSubCategory(subcategory: string) {
-	let filteredProducts = this.state.products.filter(
-	  (product: any) =>
-		subcategory === "" ||
-		product.category.toLowerCase() === subcategory.toLowerCase() && (this.state.category === "" || product.collection.toLowerCase() === this.state.category.toLowerCase())
-	);
-	this.setState({  subcategory, filteredProducts });
+    let filteredProducts = this.state.products.filter(
+      (product: any) =>
+        subcategory === "" ||
+        (product.category.toLowerCase() === subcategory.toLowerCase() &&
+          (this.state.category === "" ||
+            product.collection.toLowerCase() ===
+              this.state.category.toLowerCase()))
+    );
+    this.setState({ subcategory, filteredProducts,loading:false });
   }
   renderCategories() {
     return this.state.categories.map((category, index) => {
-      let subcategories = this.state.subcategories.filter((item: any) =>
-        item.collections.includes(category) && this.state.category.toLowerCase() === category
+      let subcategories = this.state.subcategories.filter(
+        (item: any) =>
+          item.collections.includes(category) &&
+          this.state.category.toLowerCase() === category
       );
       return (
-        <div key={index} >
-          <div className="border-b-2 flex justify-between py-5 px-8 text-2xl cursor-pointer" onClick={() => this.updateCategory(category)}>
+        <div key={index}>
+          <div
+            className="border-b-2 flex justify-between py-5 px-8 text-2xl cursor-pointer"
+            onClick={() => this.updateCategory(category)}
+          >
             <div>{category}</div>
             <div>
               <i className="fa fa-arrow-right"></i>
@@ -78,7 +95,7 @@ export default class page extends Component {
             <div
               className="border-b-2 flex justify-between py-5 pl-16 cursor-pointer"
               key={subIndex + " - " + index}
-			  onClick={()=>this.updateSubCategory(subCat.category)}
+              onClick={() => this.updateSubCategory(subCat.category)}
             >
               <div>{subCat.category}</div>
             </div>
@@ -110,10 +127,10 @@ export default class page extends Component {
     return this.state.filteredProducts.map((product, index) => (
       <div key={index} className="m-3 shadow-lg max-h-96 w-72 pb-2">
         <Link
-		href={{
-			pathname:"/product",
-			query:{id:product.id}
-		}}
+          href={{
+            pathname: "/product",
+            query: { id: product.id },
+          }}
           className="flex bg-blue-100 w-72 h-48 justify-center items-center bg-cover bg-center"
           style={
             product.images
@@ -130,10 +147,13 @@ export default class page extends Component {
             >
               {product.collection}
             </div>
-            <div className="my-2 cursor-pointer text-blue-600 underline" onClick={()=>this.updateSubCategory(product.category)}>
+            <div
+              className="my-2 cursor-pointer text-blue-600 underline"
+              onClick={() => this.updateSubCategory(product.category)}
+            >
               {product.category}
             </div>
-			<div>{product.size}</div>
+            <div>{product.size}</div>
           </div>
           <div className="flex justify-between items-end">
             {this.renderSale(product)}
@@ -178,6 +198,7 @@ export default class page extends Component {
     loading: true,
     products: [],
     subcategories: [],
+    subcategory: "",
   };
 
   updateCart(id: number) {

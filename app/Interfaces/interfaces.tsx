@@ -19,6 +19,7 @@ export type shopStateType = {
     loading:boolean
     products: any[]
     subcategories:any[]
+    subcategory?:string
 }
 
 export type ContactUsInterface = {
