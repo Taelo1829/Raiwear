@@ -11,6 +11,7 @@ export default class page extends Component {
   }
   constructor(props: any) {
     super(props);
+    this.updateCart = this.updateCart.bind(this);
   }
 
   async loadData() {
@@ -90,7 +91,7 @@ export default class page extends Component {
             {this.renderImages()}
             <div
               className={`flex flex-col 
-                shadow-2xl p-5 h-96 w-96 hover:border-orange-300 hover:border hover:border-1 mx-10`}
+                hover:shadow-2xl p-5 h-96 w-96 hover:border-orange-300 hover:border hover:border-1 mx-10`}
                 onClick={()=> this.setState({viewFull:true})}
             >
              
@@ -137,7 +138,7 @@ export default class page extends Component {
               </div>
               <div className="mb-2">{this.state.size}</div>
               <div className="text-2xl mb-2"> {this.renderPrice()}</div>
-              <button className="border border-black py-2 px-5  bg-black text-white">
+              <button className="border border-black py-2 px-5  bg-black text-white" onClick={this.updateCart}>
                 add to cart
               </button>
             </div>

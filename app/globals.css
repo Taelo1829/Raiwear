@@ -51,5 +51,8 @@
   width: 34rem
 }
 
+::-webkit-scrollbar {
+  width: 0 !important;
+}
 
 /* background  */

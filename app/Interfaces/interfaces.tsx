@@ -26,7 +26,10 @@ export type ContactUsInterface = {
     firstName: string,
     lastName: string,
     email: string,
-    mobile: string
+    mobile: string,
+    loading:boolean,
+    subject:string,
+    message:string
 }
 
 export interface FooterColumnInterface {
