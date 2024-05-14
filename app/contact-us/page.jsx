@@ -1,6 +1,10 @@
 "use client";
 import React, { Component } from "react";
 import Input from "./Input";
+<<<<<<< HEAD
+=======
+import { sendMail } from "../../services/sendMail";
+>>>>>>> 0533fd4043de714f1ab15c4521ba1ba50e7449a4
 
 export default class page extends Component {
   state = {
@@ -17,6 +21,7 @@ export default class page extends Component {
     super(props);
     this.updateState = this.updateState.bind(this);
   }
+<<<<<<< HEAD
 
   handleSend(){
     try{
@@ -25,10 +30,35 @@ export default class page extends Component {
       console.error(error)
     }
   }
+=======
+>>>>>>> 0533fd4043de714f1ab15c4521ba1ba50e7449a4
   updateState(data) {
     this.setState({ ...data });
   }
 
+<<<<<<< HEAD
+=======
+   async handleSend (){
+    let response = await sendMail('https://craftcode.design/');
+    console.log(response);
+}
+
+  sendEmail = ({ to, from, subject, message }) => {
+    // const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+    // sendSmtpEmail.sender = { name: from, email: from };
+    // sendSmtpEmail.to = [{ email: to }];
+    // sendSmtpEmail.subject = subject;
+    // sendSmtpEmail.htmlContent = message;
+
+    try {
+    //   await sendinblueClient.sendTransacEmail(sendSmtpEmail);
+      return "Email sent successfully!";
+    } catch (error) {
+      console.error("Error sending email:", error);
+      throw error;
+    }
+  };
+>>>>>>> 0533fd4043de714f1ab15c4521ba1ba50e7449a4
   render() {
     return (
       <div className="p-5 flex justify-center">
