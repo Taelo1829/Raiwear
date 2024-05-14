@@ -16,10 +16,10 @@ const ShoppingCategory: React.FC<OnSaleInterface> = ({products}) => {
         }
     }
     return (
-        <div className='bg-orange-custom my-5'>
-            <div className='h-96 overflow-x-scroll px-2'>
+        <div className='bg-orange-custom my-5 h-1/2'>
+            <div className=' px-10'>
                 <p className='text-3xl text-red-custom p-3 text-center '>SHOP BY CATEGORY</p>
-                <div className='flex justify-center w-100'>
+                <div className='flex justify-center flex-wrap'>
                     {collections.map((item:any,index:number)=>{
                         return <CategoryItem title={item.collection} image={item.image} key={index} />
                     })}

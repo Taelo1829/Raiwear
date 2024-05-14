@@ -19,13 +19,17 @@ export type shopStateType = {
     loading:boolean
     products: any[]
     subcategories:any[]
+    subcategory?:string
 }
 
 export type ContactUsInterface = {
     firstName: string,
     lastName: string,
     email: string,
-    mobile: string
+    mobile: string,
+    loading:boolean,
+    subject:string,
+    message:string
 }
 
 export interface FooterColumnInterface {
@@ -211,6 +215,7 @@ export type productType = {
     sizes?:any[]
     status?:string
     products?:any[]
+    viewFull?: boolean
 }
 
 export interface ToastInterface {

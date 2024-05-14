@@ -1,4 +1,5 @@
 "use client"
+
 export function fieldValidation(id, field) {
     let element = document.getElementById(id);
   if (!field) {
@@ -34,3 +35,23 @@ export function getLocalData(name){
     return localStorage.getItem(name)
   }
 }
+
+    
+// export async function sendEmail({ to, from, subject, message }) {
+//   const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+//   sendSmtpEmail.sender = { name: from, email: from };
+//   sendSmtpEmail.to = [{ email: to }];
+//   sendSmtpEmail.subject = subject;
+//   sendSmtpEmail.htmlContent = message;
+
+//   try {
+//     await sendinblueClient.sendTransacEmail(sendSmtpEmail);
+//     return('Email sent successfully!');
+//   } catch (error) {
+//     console.error('Error sending email:', error);
+//     throw error;
+//   }
+// }
+
+		
+    

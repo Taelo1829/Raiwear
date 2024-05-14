@@ -18,7 +18,7 @@ const Header = () => {
   const [width, setWidth] = useState("w-0");
   const [cartCount, setCartCount] = useState(0);
   const [searchHidden,setHideSearch] = useState(false) 
-
+  const [notificationHidden,setHideNotification] = useState(true)
   function updateCartCount(){
     setInterval(() =>{
         let cart = JSON.parse(localStorage.getItem('cart') || "[]");
@@ -47,10 +47,10 @@ const Header = () => {
   }
 
   return (
-    <div className={" relative " + (pathName === "/shopping" ? "pt-10" : "")}>
+    <div className={"relative " + (pathName === "/shopping" ? "pt-10" : "")}>
       <div className="flex flex-col  items-center fixed w-screen pb-5 md:max-h-52 transition duration-300 ease-in-out  border-b border-1 border-orange-custom z-10 bg-white ">
         <div className="container pt-5 ">
-          <div className="flex justify-between items-center">
+          <div className="md:flex justify-between items-center">
             <div
               className=" flex-1 px-5 md:inline-block cursor-pointer"
               data-modal-target="modal"
@@ -83,6 +83,15 @@ const Header = () => {
                   ""
                 )}
                 <Link href={"shopping"}>Shopping Bag({cartCount}) &nbsp;</Link>
+                <Link href={"notification"} className="relative"><i className="fa fa-bell"></i> 
+                <div className="absolute top-0 right-0 w-2 h-2 rounded-full bg-red-500"></div>
+                <div>
+                <div className={"absolute bg-white w-96 min-h-12 border border-1 z-20 "+ (notificationHidden?"hidden":"")}>
+                  <div className="font-semibold text-2x text-center border-b">NOTIFICATIONS</div>
+                  <div className="font-light text-2x text-center border-b">There are no notifications</div>
+                  </div>
+                </div>
+                </Link>
               </div>
             </div>
           </div>

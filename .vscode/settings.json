@@ -4,6 +4,13 @@
         "pexi",
         "Postnet",
         "RAIWEAR",
-        "SUNNINGHILL"
-    ]
+        "sendinblue",
+        "SUNNINGHILL",
+        "Transac"
+    ],
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground":"#f4ba34",
+        "titleBar.activeForeground": "#000000",
+        "titleBar.inactiveBackground": "#f4ba34"
+    }
 }
