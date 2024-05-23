@@ -240,5 +240,6 @@ export default function Page(){
   const search = useSearchParams()
 const id = search.get("id")
 const viewType = search.get("viewType")
+console.log(id)
   return <AddNew id={id} router={router} viewType={viewType}/>
 }

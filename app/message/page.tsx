@@ -6,15 +6,14 @@ import { getMessages, sendMessage } from "../api/database";
 export default class page extends Component {
   constructor(props: propsType) {
     super(props);
+    this.loadData = this.loadData.bind(this);
   }
   componentDidMount(): void {
     this.loadData();
   }
   loadData = async () => {
-    let id = "";
-    if(this.props.searchParams){
-      id = this.props?.searchParams?.id;
-    }
+    let id = (this.props as any)?.searchParams?.id;
+
     let message = await getMessages(id);
     if (message.length) {
       this.setState({
