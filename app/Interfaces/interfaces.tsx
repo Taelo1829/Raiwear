@@ -219,11 +219,11 @@ export type productType = {
 }
 
 export interface ToastInterface {
-    title:string
-    message: string
-    setShow: (message?:string,status?:string) => void
-    show: boolean
-    status: string
+    title?:string
+    message?: string
+    setShow?: (message?:string,status?:string) => void
+    show?: boolean
+    status?: string
 }
 
 export interface ImageInterface {
