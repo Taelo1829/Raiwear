@@ -1,7 +1,7 @@
 import React from 'react'
 import { ImageInterface } from '../Interfaces/interfaces'
 
-const Image: React.FC<ImageInterface> = ({children,image,width,height,borderless}) => {
+const Image: React.FC<ImageInterface> = ({children,image,width,height,borderless,alt}) => {
     if(!width){
         width = "w-48"
     }

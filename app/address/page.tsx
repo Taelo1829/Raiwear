@@ -90,7 +90,7 @@ const Page = () => {
                     key={index}
                     className="border border-1 border-black flex"
                   >
-                    <Image image={item.images[0]} width="w-72 h-80" />
+                    <Image alt="image" image={item.images[0]} width="w-72 h-80" />
                   </div>
                 );
               })}

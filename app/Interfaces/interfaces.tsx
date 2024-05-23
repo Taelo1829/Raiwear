@@ -231,7 +231,8 @@ export interface ImageInterface {
     image?: string,
     width?: string
     height?: string,
-    borderless?: boolean
+    borderless?: boolean,
+    alt?:string
 }
 
 export interface AddNewInterface {
