@@ -126,20 +126,20 @@ import { doc } from 'firebase/firestore';
            <div className="text-2xl my-3">size</div>
            <select className="w-full text-center border border-black rounded-lg"  onChange={(e)=>this.setState({size:e.target.value})}  value={this.state.size}>
            <option> -- select -- </option>
-           {this.state.sizes.map((size:any)=>(<option key={size.id} value={size.size}>{size.size}</option>))}
+           {this.state.sizes?.map((size:any)=>(<option key={size.id} value={size.size}>{size.size}</option>))}
             </select></div>
          <div className="w-full px-5">
            <div className="text-2xl my-3">collection</div>
          <select className="w-full text-center border border-black rounded-lg"  onChange={(e)=>this.setState({collection:e.target.value})}  value={this.state.collection}>
            <option> -- select -- </option>
-            {this.state.collections.map(item => <option key={item.id} value={item.title}>{item.title}</option>)}
+            {this.state.collections?.map(item => <option key={item.id} value={item.title}>{item.title}</option>)}
             </select>
            </div>
            <div className="w-full px-5">
            <div className="text-2xl my-3">category</div>
          <select className="w-full text-center border border-black rounded-lg"  onChange={(e)=>this.setState({category:e.target.value})}  value={this.state.category}>
            <option> -- select -- </option>
-           {this.state.categories.map(item => <option key={item.id} value={item.title}>{item.title}</option>)}
+           {this.state.categories?.map(item => <option key={item.id} value={item.title}>{item.title}</option>)}
             </select>
            </div>
          </div>
