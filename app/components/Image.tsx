@@ -1,7 +1,7 @@
 import React from 'react'
 import { ImageInterface } from '../Interfaces/interfaces'
 
-const Image: React.FC<ImageInterface> = ({children,image,width,height}) => {
+const Image: React.FC<ImageInterface> = ({children,image,width,height,borderless}) => {
     if(!width){
         width = "w-48"
     }
@@ -10,7 +10,7 @@ const Image: React.FC<ImageInterface> = ({children,image,width,height}) => {
         height = "h-48"
     }
   return (
-    <div className={`${width} ${height} bg-cover bg-center border border-1 border-black`} style={{backgroundImage:`url(${image})`}}>
+    <div className={`${width} ${height} bg-cover bg-center ${borderless?"":"border border-1 border-black"}`} style={{backgroundImage:`url(${image})`}}>
          {children}
         </div>
   )

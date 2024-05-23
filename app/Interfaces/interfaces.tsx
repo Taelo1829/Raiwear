@@ -230,7 +230,8 @@ export interface ImageInterface {
     children?: any ,
     image?: string,
     width?: string
-    height?: string
+    height?: string,
+    borderless?: boolean
 }
 
 export interface AddNewInterface {
@@ -238,4 +239,14 @@ export interface AddNewInterface {
     router: any
     value?:string|null
     viewType?: string|null
+}
+
+export type MessageStateType = {
+    date:"",
+    subject: string;
+    email: string;
+    message:string
+    firstName: string;
+    lastName: string;
+    loading: boolean
 }

@@ -12,7 +12,6 @@ export function fieldValidation(id, field) {
   }
 }
 
-
 export function getUserDetails() {
     if (typeof window !== 'undefined') {
         let location = localStorage.getItem("currentUser");
@@ -36,22 +35,17 @@ export function getLocalData(name){
   }
 }
 
-    
-// export async function sendEmail({ to, from, subject, message }) {
-//   const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
-//   sendSmtpEmail.sender = { name: from, email: from };
-//   sendSmtpEmail.to = [{ email: to }];
-//   sendSmtpEmail.subject = subject;
-//   sendSmtpEmail.htmlContent = message;
+export function generateGui(){
+  let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let gui = "";
+  let count = 0
+  while(gui.length < 25){
+    count ++
+      gui += letters[Math.floor(Math.random() * letters.length)];
+  }
 
-//   try {
-//     await sendinblueClient.sendTransacEmail(sendSmtpEmail);
-//     return('Email sent successfully!');
-//   } catch (error) {
-//     console.error('Error sending email:', error);
-//     throw error;
-//   }
-// }
+  return gui
+}
 
 		
     

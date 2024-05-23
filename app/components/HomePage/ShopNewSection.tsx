@@ -11,7 +11,7 @@ const ShopNewSection = () => {
             <Image src="/img/1.png" width={300} height={300} alt="raiwear logos" />
         </div>
         <div className='flex md:hidden justify-center '>
-            <Link className='border border-black rounded-full p-3' href="/collection" ></Link>
+            <Link className='border border-black rounded-2xl p-3 min-w-40 text-center bg-black text-white' href="/shop-new" >shop new</Link>
         </div></>
 
     )

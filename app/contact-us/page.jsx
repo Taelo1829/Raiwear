@@ -1,10 +1,7 @@
 "use client";
 import React, { Component } from "react";
 import Input from "./Input";
-<<<<<<< HEAD
-=======
-import { sendMail } from "../../services/sendMail";
->>>>>>> 0533fd4043de714f1ab15c4521ba1ba50e7449a4
+import { sendMessage } from "../api/database";
 
 export default class page extends Component {
   state = {
@@ -15,54 +12,49 @@ export default class page extends Component {
     mobile: "",
     subject: "",
     message: "",
+    sent: false
   };
 
   constructor(props) {
     super(props);
     this.updateState = this.updateState.bind(this);
+    this.handleSend = this.handleSend.bind(this);
   }
-<<<<<<< HEAD
 
-  handleSend(){
-    try{
-
-    }catch(error){
+  async handleSend() {
+    try {
+      this.setState({loading: true})
+      await sendMessage({
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        mobile: this.state.mobile,
+        subject: this.state.subject,
+        message: this.state.message
+      })
+      this.setState({ sent: true })
+      setTimeout(() => {
+        this.setState({
+        firstName:"", lastName: "",
+        loading: false,
+        email: "",
+        mobile: "",
+        subject: "",
+        message: "",
+        sent: false})
+      }, 2500)
+    } catch (error) {
       console.error(error)
     }
   }
-=======
->>>>>>> 0533fd4043de714f1ab15c4521ba1ba50e7449a4
   updateState(data) {
     this.setState({ ...data });
   }
 
-<<<<<<< HEAD
-=======
-   async handleSend (){
-    let response = await sendMail('https://craftcode.design/');
-    console.log(response);
-}
-
-  sendEmail = ({ to, from, subject, message }) => {
-    // const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
-    // sendSmtpEmail.sender = { name: from, email: from };
-    // sendSmtpEmail.to = [{ email: to }];
-    // sendSmtpEmail.subject = subject;
-    // sendSmtpEmail.htmlContent = message;
-
-    try {
-    //   await sendinblueClient.sendTransacEmail(sendSmtpEmail);
-      return "Email sent successfully!";
-    } catch (error) {
-      console.error("Error sending email:", error);
-      throw error;
-    }
-  };
->>>>>>> 0533fd4043de714f1ab15c4521ba1ba50e7449a4
   render() {
     return (
       <div className="p-5 flex justify-center">
-        <div className="absolute text-white text-center w-96 bg-green-400 p-5 top-1/2 hidden">
+        <div className={`absolute text-white text-center w-96 bg-green-400 p-5 top-1/2 ${this.state.sent ? "" : "hidden"}`}>
           <div>Message successfully sent</div>
         </div>
         {this.state.loading ? (
@@ -123,7 +115,9 @@ export default class page extends Component {
                       <label>Message</label>
                     </div>
                     <div>
-                      <textarea className="w-full min-h-20" />
+                      <textarea
+                       className="w-full min-h-20" 
+                       onChange={(e) => this.setState({ message: e.target.value })}/>
                     </div>
                   </div>
                 </div>

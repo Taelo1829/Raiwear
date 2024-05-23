@@ -5,11 +5,16 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Checkout from "../components/Checkout";
 import { getTotal } from "../helper/helper";
-import { getProducts } from "../api/database";
+import { getProducts, postCart } from "../api/database";
 
 class Page extends Component<LoginInterface> {
   componentDidMount(): void {
     this.loadData();
+  }
+
+  constructor(props:any){
+    super(props);
+    this.saveCart = this.saveCart.bind(this)
   }
   async loadData() {
     let products = await getProducts();
@@ -55,6 +60,12 @@ class Page extends Component<LoginInterface> {
     let cart = this.state.cart.filter((item: any) => item.id !== id);
     localStorage.setItem("cart", JSON.stringify(cart));
     this.setState({ cart });
+  }
+
+  saveCart(){
+    postCart(this.state.cart).then((x)=>{
+      this.props.router.push("/address")
+    })
   }
 
   render() {
@@ -117,7 +128,7 @@ class Page extends Component<LoginInterface> {
           </div>
           <Checkout
             total={getTotal(this.state.cart)}
-            onClick={() => this.props.router.push("/address")}
+            onClick={this.saveCart}
           />
         </div>
       </div>
