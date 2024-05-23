@@ -1,17 +1,20 @@
 "use client";
 import React, { Component } from "react";
-import { MessageStateType } from "../Interfaces/interfaces";
+import { MessageStateType, propsType } from "../Interfaces/interfaces";
 import { getMessages, sendMessage } from "../api/database";
 
 export default class page extends Component {
-  constructor(props: any) {
+  constructor(props: propsType) {
     super(props);
   }
   componentDidMount(): void {
     this.loadData();
   }
   loadData = async () => {
-    let id = this.props.searchParams.id;
+    let id = "";
+    if(this.props.searchParams){
+      id = this.props?.searchParams?.id;
+    }
     let message = await getMessages(id);
     if (message.length) {
       this.setState({
@@ -25,7 +28,7 @@ export default class page extends Component {
         subject: message[8],
         loading: false,
       });
-      this.setOpen(id,{
+      this.setOpen(id, {
         dateAdded: message[0],
         email: message[1],
         firstName: message[2],
@@ -33,16 +36,16 @@ export default class page extends Component {
         lastName: message[4],
         message: message[5],
         mobile: message[6],
-        read:true,
+        read: true,
         subject: message[8],
-      })
+      });
     }
   };
 
-  setOpen = async(id:string,postData:any)=>{
-    await sendMessage(postData,id)
-  }
-  
+  setOpen = async (id: string, postData: any) => {
+    await sendMessage(postData, id);
+  };
+
   state: Readonly<MessageStateType> = {
     date: "",
     subject: "",
