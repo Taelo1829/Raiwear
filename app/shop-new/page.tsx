@@ -183,7 +183,7 @@ export default class page extends Component {
           </div>
           {this.renderCategories()}
         </div>
-        <div className="w-full flex flex-wrap overflow-scroll h-full">
+        <div className="w-full flex justify-center flex-wrap overflow-scroll h-full">
           {this.renderProducts()}
         </div>
       </div>
