@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default class page extends Component {
   componentDidMount(): void {
-    let { subcategory = "", category = "" } = this.props.searchParams;
+    let { subcategory = "", category = "" } = (this.props as any).searchParams;
     this.setState({ subcategory, category });
     this.loadData();
   }

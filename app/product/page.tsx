@@ -17,7 +17,7 @@ export default class page extends Component {
   async loadData() {
     let products = await getProducts();
     let product = products.find(
-      (product: productType) => product.id === this?.props?.searchParams?.id
+      (product: productType) => product.id === (this?.props as any).searchParams?.id
     );
     this.setState({ ...product, loading: false, active: product.images[0] });
   }
