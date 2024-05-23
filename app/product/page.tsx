@@ -15,7 +15,6 @@ export default class page extends Component {
   }
 
   async loadData() {
-    console.log("getting products");
     let products = await getProducts();
     let product = products.find(
       (product: productType) => product.id === this?.props?.searchParams?.id
@@ -28,6 +27,7 @@ export default class page extends Component {
       <div>
         {this.state.images.map((image: string, index: number) => (
           <div
+            key={index}
             className={`${
               this.state.active === image
                 ? "border border-1 border-orange-300"

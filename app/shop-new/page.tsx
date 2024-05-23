@@ -173,7 +173,7 @@ export default class page extends Component {
       return <div className="text-center">Loading...</div>;
     return (
       <div className="flex h-screen overflow-hidden">
-        <div className="sm:hidden bg-black text-white p-3 border border-black h-full w-96 overflow-y-scroll">
+        <div className="sm:hidden md:block bg-black text-white p-3 border border-black h-full w-96 overflow-y-scroll">
           <div className="text-3xl font-bold border-b-2 py-5">categories</div>
           <div
             className="text-2xl border-b-2 py-5 px-4"
