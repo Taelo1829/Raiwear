@@ -29,7 +29,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className + " h-screen flex flex-col justify-between"}>
         <Header />
-        <div className='sm:pt-32 md:pt-40'>
+        <div className='pt-32 md:pt-40'>
           {children}
         </div>
         <Footer />

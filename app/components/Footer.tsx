@@ -14,7 +14,7 @@ const Footer = () => {
           </Link>
         </div>
       </div>
-      <div className="md:hidden sm:block sm:fixed bottom-0 md:relative w-screen p-5 bg-white border border-1 border-black">
+      <div className="block md:hidden fixed bottom-0 md:relative w-screen p-5 bg-white border border-1 border-black">
         <div className="flex justify-between w-100">
           <Link href={"/collection"}>collection</Link>
           <Link href={"/about-us"}>about us</Link>

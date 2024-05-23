@@ -99,7 +99,7 @@ const Header = () => {
 
   return (
     <div className={" relative " + (pathName === "/shopping" ? "pt-10" : "")}>
-      <div className="md:flex sm:hidden  flex-col  items-center fixed w-screen pb-5 md:max-h-52 transition duration-300 ease-in-out  border-b border-1 border-orange-custom z-10 bg-white ">
+      <div className="hidden md:flex  flex-col  items-center fixed w-screen pb-5 md:max-h-52 transition duration-300 ease-in-out  border-b border-1 border-orange-custom z-10 bg-white ">
         <div className="container pt-5 ">
           <div className="md:flex justify-between items-center">
             <div
@@ -107,12 +107,12 @@ const Header = () => {
               data-modal-target="modal"
             >
               <Link href={"/collection"}>
-                <i className="fa fa-bars md:text-4xl sm:text-2xl"></i>
+                <i className="fa fa-bars text-2xl md:text-4xl "></i>
               </Link>
             </div>
             <Link className="flex-1 flex justify-center" href={"/"}>
               <div
-                className="sm:w-96 md:w-64 h-20 bg-cover bg-center"
+                className="w-96 md:w-64 h-20 bg-cover bg-center"
                 style={{ backgroundImage: `url(/img/4.png)` }}
               ></div>
             </Link>
@@ -212,8 +212,8 @@ const Header = () => {
           <Menu toggleMenu={updateMenu} hidden={hidden} width={width} />
         </div>
       </div>
-      <div className="md:hidden sm:block md:relative sm:fixed w-screen bg-white z-10">
-        <div className="md:hidden sm:flex justify-between items-center p-3">
+      <div className="block md:hidden fixed md:relative  w-screen bg-white z-10">
+        <div className="flex md:hidden justify-between items-center p-3">
           <Link href={"/"}>
             <Image image="/img/4.png" height="h-16" borderless />
           </Link>

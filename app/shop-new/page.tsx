@@ -125,13 +125,13 @@ export default class page extends Component {
   }
   renderProducts() {
     return this.state.filteredProducts.map((product, index) => (
-      <div key={index} className="m-3 shadow-lg max-h-98 md:w-64 sm:w-48 pb-2">
+      <div key={index} className="m-3 shadow-lg max-h-98 w-48  md:w-64 pb-2">
         <Link
           href={{
             pathname: "/product",
             query: { id: product.id },
           }}
-          className="flex bg-blue-100  md:w-64 sm:w-48 h-48 justify-center items-center bg-cover bg-center"
+          className="flex bg-blue-100 w-48 md:w-64  h-48 justify-center items-center bg-cover bg-center"
           style={
             product.images
               ? { backgroundImage: `url(${product.images[0]})` }
@@ -173,7 +173,7 @@ export default class page extends Component {
       return <div className="text-center">Loading...</div>;
     return (
       <div className="flex h-screen overflow-hidden">
-        <div className="sm:hidden md:block bg-black text-white p-3 border border-black h-full w-96 overflow-y-scroll">
+        <div className="hidden md:block bg-black text-white p-3 border border-black h-full w-96 overflow-y-scroll">
           <div className="text-3xl font-bold border-b-2 py-5">categories</div>
           <div
             className="text-2xl border-b-2 py-5 px-4"
