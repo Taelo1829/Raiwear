@@ -22,7 +22,7 @@ export default function Home(props:any) {
 },[])
 
 async function loadData(){
- let products = await getProducts();
+ let products:any = await getProducts();
  setProducts(products)
     setLoading(false)
 }

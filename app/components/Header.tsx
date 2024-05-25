@@ -14,18 +14,19 @@ const Header = () => {
   let admin =
     User?.email === "01ombie@gmail.com" ||
     User?.email === "tseholoba2@gmail.com";
+    const pathName = usePathname();
+    const [hidden, setHidden] = useState("hidden");
+    const [width, setWidth] = useState("w-0");
+    const [cartCount, setCartCount] = useState(0);
+    const [searchHidden, setHideSearch] = useState(false);
+    const [notificationHidden, setHideNotification] = useState(true);
+    const [messages, setMessages]: any[] = useState([]);
+    
   useEffect(() => {
     updateCartCount();
     getMessagesFromDB();
-  }, []);
-  const pathName = usePathname();
-  const [hidden, setHidden] = useState("hidden");
-  const [width, setWidth] = useState("w-0");
-  const [cartCount, setCartCount] = useState(0);
-  const [searchHidden, setHideSearch] = useState(false);
-  const [notificationHidden, setHideNotification] = useState(true);
-  const [messages, setMessages]: any[] = useState([]);
-  function updateCartCount() {
+  }, [messages]);
+function updateCartCount() {
     setInterval(() => {
       let cart = JSON.parse(localStorage.getItem("cart") || "[]");
       setCartCount(cart.length);
