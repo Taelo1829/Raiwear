@@ -40,6 +40,7 @@ async function getProducts() {
   if (results.exists()) {
     products = results.val();
   }
+  if(!Array.isArray(products)) products = Object.values(products)
   return products.sort((a, b) => {
     if (a.heading.toLowerCase() < b.heading.toLowerCase()) return -1;
     return 1;

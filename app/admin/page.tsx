@@ -5,7 +5,7 @@ import { adminType } from "../Interfaces/interfaces";
 import Image from "next/image";
 import Link from "next/link";
 import { getProductCategories, getProductSubcategories, getProducts, getSizes } from "../api/database";
-import { getLocalData } from "../helper/helper";
+import { generateGui, getLocalData } from "../helper/helper";
 
 export default class page extends Component {
   constructor(props:any){
@@ -204,7 +204,7 @@ export default class page extends Component {
         {this.renderAddNew()? <>
             <Link href={{
               pathname:addNewRoute,
-              query:{id:this.getNewId()}}}  className={style + " bg-black text-white p-4"}>
+              query:{id:generateGui()}}}  className={style + " bg-black text-white p-4"}>
                add new
               </Link>
             {this.state.currentView === "products" ?  <button className={style + " bg-black text-white"}>
@@ -431,7 +431,7 @@ export default class page extends Component {
   getNewId(){
     switch(this.state.currentView){
       case "products":
-        return this.state.products.length + 1
+        return this.state.products.length + 2
       case "products category":
         return this.state.productsCategories.length + 1
       case "products subcategory":

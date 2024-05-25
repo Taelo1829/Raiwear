@@ -17,25 +17,26 @@ export default class page extends Component {
   async loadData() {
     let products = await getProducts();
     let product = products.find(
-      (product: productType) => product.id === (this?.props as any).searchParams?.id
+      (product: productType) =>
+        product.id === (this?.props as any).searchParams?.id
     );
     this.setState({ ...product, loading: false, active: product.images[0] });
   }
 
   renderImages() {
     return (
-      <div>
+      <div className="flex flex-col">
         {this.state.images.map((image: string, index: number) => (
           <div
             key={index}
             className={`${
               this.state.active === image
-                ? "border border-1 border-orange-300"
+                ? "border border-1 border-orange-300 "
                 : ""
             } p-4`}
             onClick={() => this.setState({ active: image })}
           >
-            <Image image={image} height="h-20" width="w-20" />
+            <Image image={image} height="h-16 md:h-20" width="w-16 md:w-20" />
           </div>
         ))}
       </div>
@@ -59,12 +60,11 @@ export default class page extends Component {
     }
   }
 
-  
   updateCart() {
     let cart = JSON.parse(localStorage.getItem("cart") || "[]");
     let index = cart.findIndex((item: any) => item.id === this.state.id);
     if (index === -1) {
-      cart.push({ id:this.state.id, quantity: 1 });
+      cart.push({ id: this.state.id, quantity: 1 });
     } else {
       cart[index].quantity += 1;
     }
@@ -77,52 +77,71 @@ export default class page extends Component {
       return <div className="text-center">Loading...</div>;
     return (
       <div className="flex justify-center relative">
-        {this.state.viewFull?<div className="absolute shadow-2xl w-5/6 h-full bg-white p-5">
-          <div> <i className="fa fa-close fa-2x float-end cursor-pointer" onClick={()=> this.setState({viewFull:false})}></i></div>
-          <div className="flex">
-        <div>{this.renderImages()}</div>
-        <div className="w-full flex justify-center items-center">
-          <Image image={this.state.active} width="w-104" height="h-full" />
-        </div>
-        </div>
-        </div>:<></>}
+        {this.state.viewFull ? (
+          <div className="absolute shadow-2xl w-5/6 h-5/6 md:h-full bg-white p-5">
+            <div>
+              <i
+                className="fa fa-close fa-2x float-end cursor-pointer"
+                onClick={() => this.setState({ viewFull: false })}
+              ></i>
+            </div>
+            <div className="block md:flex ">
+              <div className="hidden md:block">{this.renderImages()}</div>
+              <div className="w-full flex justify-center items-center">
+                <Image
+                  image={this.state.active}
+                  width="w-104"
+                  height="h-80"
+                />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
         <div className="container flex justify-center">
-          <div className="shadow-xl flex p-5">
-            {this.renderImages()}
+          <div className="w-screen md:shadow-xl block md:flex justify-center p-5 ">
+            <div className="hidden md:block">{this.renderImages()}</div>
             <div
               className={`flex flex-col 
-                hover:shadow-2xl p-5 h-96 w-96 hover:border-orange-300 hover:border hover:border-1 mx-10`}
-                onClick={()=> this.setState({viewFull:true})}
+                hover:shadow-2xl md:p-5 md:h-96 md:w-96 hover:border-orange-300 hover:border hover:border-1 md:mx-10`}
+              onClick={() => this.setState({ viewFull: true })}
             >
-             
-              <div>
-                <Image image={this.state.active} height="h-80" width="w-80" />
+              <div className="flex">
+              <div className="mr-1">
+                <Image
+                  image={this.state.active}
+                  height="h-56 md:h-80"
+                  width="w-56 md:w-80"
+                />
+              </div>
+              <div className="block md:hidden">{this.renderImages()}</div>
               </div>
             </div>
             <div>
               <div className="text-3xl my-3">{this.state.heading}</div>
               <div>
-              <Link
-                className="text-blue-500 underline mb-2"
-                href={{
-                  pathname: "/shop-new",
-                  query: { category: this.state.collection },
-                }}
-              >
-                {this.state.collection}
-              </Link>
+                <Link
+                  className="text-blue-500 underline mb-2"
+                  href={{
+                    pathname: "/shop-new",
+                    query: { category: this.state.collection },
+                  }}
+                >
+                  {this.state.collection}
+                </Link>
               </div>
               <div>
-              <Link
-                className="text-blue-500 underline mb-2"
-                href={{
-                  pathname: "/shop-new",
-                  query: { subcategory: this.state.category },
-                }}
-              >
-                {this.state.category}
+                <Link
+                  className="text-blue-500 underline mb-2"
+                  href={{
+                    pathname: "/shop-new",
+                    query: { subcategory: this.state.category },
+                  }}
+                >
+                  {this.state.category}
                 </Link>
-                </div>
+              </div>
               <div className="text-3xl mb-2">{this.state.description}</div>
               <div className="mb-2">
                 Be the first to{" "}
@@ -138,7 +157,10 @@ export default class page extends Component {
               </div>
               <div className="mb-2">{this.state.size}</div>
               <div className="text-2xl mb-2"> {this.renderPrice()}</div>
-              <button className="border border-black py-2 px-5  bg-black text-white" onClick={this.updateCart}>
+              <button
+                className="border border-black py-2 px-5  bg-black text-white"
+                onClick={this.updateCart}
+              >
                 add to cart
               </button>
             </div>
