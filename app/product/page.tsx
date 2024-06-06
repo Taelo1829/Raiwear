@@ -20,7 +20,11 @@ export default class page extends Component {
       (product: productType) =>
         product.id === (this?.props as any).searchParams?.id
     );
-    this.setState({ ...product, loading: false, active: product.images[0] });
+    this.setState({
+      ...product,
+      loading: false,
+      active: product?.images?.at(0),
+    });
   }
 
   renderImages() {
@@ -88,11 +92,7 @@ export default class page extends Component {
             <div className="block md:flex ">
               <div className="hidden md:block">{this.renderImages()}</div>
               <div className="w-full flex justify-center items-center">
-                <Image
-                  image={this.state.active}
-                  width="w-104"
-                  height="h-80"
-                />
+                <Image image={this.state.active} width="w-104" height="h-80" />
               </div>
             </div>
           </div>
@@ -108,14 +108,14 @@ export default class page extends Component {
               onClick={() => this.setState({ viewFull: true })}
             >
               <div className="flex">
-              <div className="mr-1">
-                <Image
-                  image={this.state.active}
-                  height="h-56 md:h-80"
-                  width="w-56 md:w-80"
-                />
-              </div>
-              <div className="block md:hidden">{this.renderImages()}</div>
+                <div className="mr-1">
+                  <Image
+                    image={this.state.active}
+                    height="h-56 md:h-80"
+                    width="w-56 md:w-80"
+                  />
+                </div>
+                <div className="block md:hidden">{this.renderImages()}</div>
               </div>
             </div>
             <div>
