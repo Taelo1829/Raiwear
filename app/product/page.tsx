@@ -1,7 +1,7 @@
 "use client";
 import React, { Component } from "react";
 import { productType } from "../Interfaces/interfaces";
-import { getProducts } from "../api/database";
+import { loadProduct } from "../api/database";
 import Image from "../components/Image";
 import Link from "next/link";
 
@@ -15,11 +15,8 @@ export default class page extends Component {
   }
 
   async loadData() {
-    let products = await getProducts();
-    let product = products.find(
-      (product: productType) =>
-        product.id === (this?.props as any).searchParams?.id
-    );
+    let product: any = await loadProduct((this?.props as any).searchParams?.id);
+
     this.setState({
       ...product,
       loading: false,
