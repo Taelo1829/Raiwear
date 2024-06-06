@@ -49,7 +49,7 @@ export default class page extends Component {
       this.updateSubCategory(this.state.subcategory.toLowerCase());
     } else if (this.state.category) {
       this.updateCategory(this.state.category);
-    }else {
+    } else {
       this.setState({ loading: false });
     }
   }
@@ -59,19 +59,24 @@ export default class page extends Component {
         category === "" ||
         product.collection.toLowerCase() === category.toLowerCase()
     );
-    this.setState({ category, filteredProducts, subcategory: "",loading:false });
+    this.setState({
+      category,
+      filteredProducts,
+      subcategory: "",
+      loading: false,
+    });
   }
 
   updateSubCategory(subcategory: string) {
     let filteredProducts = this.state.products.filter(
       (product: any) =>
-        subcategory === "" ||
-        (product.category.toLowerCase() === subcategory.toLowerCase() &&
-          (this.state.category === "" ||
-            product.collection.toLowerCase() ===
-              this.state.category.toLowerCase()))
+        (subcategory === "" ||
+          product.category.toLowerCase() === subcategory.toLowerCase()) &&
+        (this.state.category === "" ||
+          product.collection.toLowerCase() ===
+            this.state.category.toLowerCase())
     );
-    this.setState({ subcategory, filteredProducts,loading:false });
+    this.setState({ subcategory, filteredProducts, loading: false });
   }
   renderCategories() {
     return this.state.categories.map((category, index) => {
@@ -168,6 +173,28 @@ export default class page extends Component {
       </div>
     ));
   }
+
+  breadCrumbs() {
+    return (
+      <div className="cursor-pointer text-blue-500 ">
+        {this.state.category ? (
+          <>
+            <span onClick={() => this.updateCategory("")}>All </span>
+            <span onClick={() => this.updateSubCategory("")}>
+              / {this.state.category}{" "}
+            </span>
+            {this.state.subcategory ? (
+              <span>/ {this.state.subcategory}</span>
+            ) : (
+              ""
+            )}
+          </>
+        ) : (
+          ""
+        )}
+      </div>
+    );
+  }
   render() {
     if (this.state.loading)
       return <div className="text-center">Loading...</div>;
@@ -183,8 +210,13 @@ export default class page extends Component {
           </div>
           {this.renderCategories()}
         </div>
-        <div className="w-full flex justify-center flex-wrap overflow-scroll h-full p-5">
-          {this.renderProducts()}
+        <div className="w-full flex flex-wrap overflow-scroll h-full p-5">
+          <div>
+            {this.breadCrumbs()}
+            <div className="w-full flex justify-center flex-wrap overflow-scroll h-full p-5">
+              {this.renderProducts()}
+            </div>
+          </div>
         </div>
       </div>
     );

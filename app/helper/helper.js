@@ -36,7 +36,7 @@ export function getLocalData(name){
 }
 
 export function generateGui(){
-  let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let letters = "1A2B3C4D5E6F7G8H9I0JKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let gui = "";
   let count = 0
   while(gui.length < 25){
